@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>D3 Page Template</title>
+      <script type="text/javascript" src="../d3/d3.js"></script>
+  </head>
+  <body>
+      <script type="text/javascript">
+
+          // We’ll start by adapting the div bar chart code to draw its bars with SVG instead, giving
+          //us more flexibility over the visual presentation.
+
+          //Width and height (size of the SVG)
+          var w = 500;
+          var h = 100;
+          var barPadding = 1; //set bar widths to be proportional. The get narrower as more data is added and vicerversa.
+
+          //Create SVG element
+          var svg = d3.select("body")
+                      .append("svg")
+                      .attr("width", w)
+                      .attr("height", h);
+
+          var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+                          11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+
+          /*Now, instead of creating divs, we generate rects and add them to svg. When drawing SVG rects, the x and y 
+          values specify the coordinates of the upper-left corner. That is, the reference of every rect is its 
+          top-left. For this purpose, we want to set the origin point as the bottom left corner. 
+          Given that our bars need to grow down from the top, we find the relationship to make it grow up from the bottom*/
+
+          //use of multivalue maps in order to set multiple attribute values using a single attr() statement. 
+
+          svg.selectAll("rect")
+              .data(dataset)
+              .enter()
+              .append("rect")
+              .attr({
+                  x: function(d, i) { return i * (w / dataset.length); }, //the x value is tied directly to the width of SVG (w)
+                  y: function(d) { return h - (d * 4); }, //Height minus data value (relation to grow up from the bottom), scaling added.
+                  width: w / dataset.length - barPadding,
+                  height: function(d) { return d * 4; }, // <-- Times four!
+                  fill: function(d) { return "rgb(0, 0, " + (d * 10) + ")"; } //translate data into color
+              });
+
+          //labels
+          svg.selectAll("text")
+              .data(dataset)
+              .enter()
+              .append("text")
+              .text(function(d) {
+                return d;
+              }) 
+              .attr("x", function(d, i) {
+                return i * (w / dataset.length) + 5;
+              })
+              .attr("y", function(d) {
+                return h - (d * 4) + 15;
+              })
+              .attr("font-family", "sans-serif")
+              .attr("font-size", "11px")
+              .attr("fill", "white")
+              .attr("text-anchor", "middle") // center text horizontally at the assigned x value
+              .attr("x", function(d, i) {
+                return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
+              });
+
+      </script>
+  </body>
+</html>
