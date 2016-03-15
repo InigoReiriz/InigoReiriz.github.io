@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>D3 Page Template</title>
+      <script type="text/javascript" src="../d3/d3.js"></script>
+  </head>
+  <body>
+      <script type="text/javascript">
+          // Your beautiful D3 code will go here
+
+        //Width and height
+        var w = 500;
+        var h = 50;
+
+        //svg is a reference pointing to the SVG object created
+        var svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+        //Data driven shapes
+        var dataset = [ 5, 10, 15, 20, 25 ];
+
+        /*and then use data() to iterate through each data point creating a circle for each one.
+        In this case, it appends those circles to the end of the SVG element, as our initial
+        selection is our reference svg (as opposed to the document body , for example).*/
+
+        /*To make it easy to reference all of the circle s later, we can create a new variable to store
+        references to them all:*/
+
+        var circles = svg.selectAll("circle")
+                        .data(dataset)
+                        .enter()
+                        .append("circle");
+
+
+        /*So, i is a numeric index value of the current element. Counting starts at zero, so for our
+        “first” circle i == 0 , the second circle’s i == 1 , and so on. We’re using i to push each
+        subsequent circle over to the right, because each subsequent loop through, the value of
+        i increases by one.
+
+        To make sure i is available to our custom function, we must include it as an argument
+        in the function definition, function(d, i) . We must also include d , even if we don’t
+        use d within your function (as in the preceding case).  */
+
+        circles.attr("cx", function(d, i) {
+                        return (i * 50) + 25;
+                    })
+                    .attr("cy", h/2)
+                    .attr("r", function(d) {
+                        return d;
+                    });
+
+        circles.attr("fill", "yellow")
+              .attr("stroke", "orange")
+              .attr("stroke-width", function(d) {
+              return d/2;
+              });
+
+      </script>
+  </body>
+</html>
