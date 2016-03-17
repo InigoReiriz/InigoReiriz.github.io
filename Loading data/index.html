@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>D3 Page Template</title>
+      <script type="text/javascript" src="../d3/d3.js"></script>
+  </head>
+  <body>
+      <script type="text/javascript">
+
+          /*We declare a global varibale first, then call d3.csv to load the data. Within the callback function, we copy the data into the global variable (so it is available to all of our subsequent functions).*/
+          var dataset; //Global variable
+
+          d3.csv("data.csv", function(error, data) {
+
+            if (error) { //If error is not null, something went wrong.
+              console.log(error); //Log the error.
+            } else { //If no error, the file loaded correctly. Yay!
+              console.log(data); //Log the data.
+              dataset = data; //Once loaded, copy to variable dataset which is a global variable
+              generate_text();
+            }
+          });
+
+          function generate_text(){
+
+                d3.select("body").selectAll("p")
+                    .data(dataset)
+                    .enter()
+                    .append("p")
+                    .text(function(d) {
+                        return "I can count up to " + d.Data; //Data(header) is the property with which we can access the object value
+                    });
+          }
+          
+      </script>
+  </body>
+</html>
