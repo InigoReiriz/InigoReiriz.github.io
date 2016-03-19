@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  		<style type="text/css"> 
+
+            .axis path { 
+    			stroke: black;
+    			stroke-width: 2;
+    			fill: none;
+			}
+            .axis line {
+            	fill: black;
+            	stroke: black;
+            	shape-rendering: crispEdges¡;
+            }
+            .axis text {
+            	font-family: sans-serif;
+            	font-size: 11px;
+            }
+
+            p {
+    			color: black;
+    			font-family: sans-serif;
+			}
+
+			h1 {
+				font-family: sans-serif;
+			}
+
+        </style>
+      <meta charset="utf-8">
+      <title> SF Crime Data </title>
+      <script type="text/javascript" src="../d3/d3.js"></script>
+  </head>
+  <body>
+  	  <h1> Visualization 1: Prostitution and vehicle theft incidents per district in 2003 and 2015</h1>
+  	  <p> The datasets correspond to the number of incidents of prostitution and vehicle theft per district in San Francisco in years 2013 and 2015. Each point in the scatterplot corresponds to a district. The radius of a point in the scatterplot is proportional to the total number of crimes in that district. The x-axis corresponds to the total number of prostitution incidents and the y-axis corresponds to the total number of vehicle theft incidents. By clicking on the text we can toggle between data from 2013 and 2015. Note that axes do not change from one scatterplot to the other but they fit the data from both years. </p>
+  	  <h4> Click to visualize data from 2015 </h4>
+      <script type="text/javascript">
+
+		// Making a scatterplot using D3
+        //Width and height (size of the SVG)
+        var w = 600;
+        var h = 400;
+        var padding = 70; //for element that are getting cutoff
+        /*helps us push the elements away from the edges of SVG*/
+
+        var dataset; //global variable
+        var xScale;
+        var yScale;
+
+        //read data for year 2013
+	    d3.csv("SF_data_03.csv", function(error, data) {
+	         if (error) { //If error is not null, something went wrong.
+	             console.log(error); //Log the error.
+	         } else { //If no error, the file loaded correctly. Yay!
+	         		dataset = data;
+	            	console.log(dataset)
+	          }
+	          scales(dataset);
+	          scatterplot(dataset);
+	    });
+
+	    function scales(dataset){
+
+	    	/*scale function for the x-axis*/
+        	/*note: d3.max function operates in arrays, not in objects. We can use d3.values(dataset) to extract all
+        	the values as an array.*/
+        	xScale = d3.scale.linear()
+                      .domain([0, d3.max(d3.values(dataset), function(d) { return parseInt(d.prostitution); })])
+                      .range([padding, w-padding * 2]); //padding fixing to avoid cutoff of the text
+        
+        	/*scale function for the y-axis*/
+        	yScale = d3.scale.linear()
+                      .domain([0, d3.max(d3.values(dataset), function(d) { return parseInt(d.vtheft); })])
+                      .range([h-padding, padding]); //high values of y are at the top and low values at the bottom.
+	    }    
+	        
+        function scatterplot(dataset){
+
+          	//Create SVG element
+          	var svg = d3.select("body")
+            	.append("svg")
+            	.attr("width", w)
+            	.attr("height", h);
+
+          	/*We make a circle for each data point. Our circles need cx, cy and r.*/
+    
+          	svg.selectAll("circle") 
+              	.data(dataset)
+              	.enter()
+              	.append("circle")  
+              	.attr("cx", function(d) {
+                    return xScale(parseInt(d.prostitution));
+              	})
+              	.attr("cy", function(d) {
+                    return yScale(parseInt(d.vtheft));
+              	})
+              	.attr("r", function(d) {
+              		//substract by h so that the circles at the top are larger
+					return Math.sqrt((h - yScale(d.totalNumber)));
+				});
+
+          	//labels
+          	svg.selectAll("text") 
+              	.data(dataset)
+              	.enter()
+              	.append("text")
+              	.text(function(d) {
+                  return d.district + "(" + d.prostitution + "," + d.vtheft + ")";
+              	})
+              	.attr("x", function(d) {
+                	return xScale(parseInt(d.prostitution));
+             	})
+              	.attr("y", function(d) {
+                	return yScale(parseInt(d.vtheft));
+              	})
+              	.attr("font-family", "sans-serif")
+              	.attr("font-size", "12px")
+              	.attr("fill", "#696969");
+
+
+            /*label x axis*/
+            var xAxis = d3.svg.axis()
+                      .scale(xScale)
+                      .orient("bottom") //where the labels should appear relative to the x-axis.
+                      .ticks(10); //Set rough # of ticks
+
+            /*label y axis*/
+            var yAxis = d3.svg.axis()
+                    .scale(yScale)
+                    .orient("left")
+                    .ticks(10);
+
+
+            //Create X axis
+            svg.append("g")
+                  .attr("class", "axis") //Assign "axis" class to clean it up using CSS
+                  .attr("transform", "translate(0," + (h - padding) + ")") /*transform the entire axis group pushing it
+                  to the bottom.*/
+                  .call(xAxis);
+
+			//Create Y axis
+            svg.append("g")
+                  .attr("class", "axis")
+                  .attr("transform", "translate(" + padding + ",0)")
+                  .call(yAxis);
+        	};
+        	
+        	//On click, update with new data
+			d3.select("h4")
+				.on("click", function() {
+				//Overwrite dataset
+				 d3.csv("SF_data_15.csv", function(error, data) {
+	         		if (error) { //If error is not null, something went wrong.
+	             		console.log(error); //Log the error.
+	         		} else { //If no error, the file loaded correctly. Yay!
+	         			dataset = data;
+	            		console.log(dataset)
+	          		}
+	          scatterplot(dataset);
+	    	});	
+
+			});
+
+      </script>
+  </body>
+</html>
