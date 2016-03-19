@@ -1,33 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  		<style type="text/css"> 
 
-            .axis path { 
-    			stroke: black;
-    			stroke-width: 2;
-    			fill: none;
-			}
-            .axis line {
-            	fill: black;
-            	stroke: black;
-            	shape-rendering: crispEdges¡;
-            }
-            .axis text {
-            	font-family: sans-serif;
-            	font-size: 11px;
-            }
+      <link href="css/mystyles.css" rel="stylesheet">
 
-            p {
-    			color: black;
-    			font-family: sans-serif;
-			}
-
-			h1 {
-				font-family: sans-serif;
-			}
-
-        </style>
       <meta charset="utf-8">
       <title> SF Crime Data </title>
       <script type="text/javascript" src="../d3/d3.js"></script>
@@ -43,7 +19,7 @@
   	  that axes do not change from one scatterplot to the other but they fit the data from both years. </p>
 
   	  <h4> Click to visualize data from 2015 </h4>
-  	  
+
       <script type="text/javascript">
 
 		// Making a scatterplot using D3
@@ -58,7 +34,7 @@
         var yScale;
 
         //read data for year 2013
-	    d3.csv("SF_data_03.csv", function(error, data) {
+	    d3.csv("data/SF_data_03.csv", function(error, data) {
 	         if (error) { //If error is not null, something went wrong.
 	             console.log(error); //Log the error.
 	         } else { //If no error, the file loaded correctly. Yay!
@@ -159,7 +135,7 @@
 			d3.select("h4")
 				.on("click", function() {
 				//Overwrite dataset
-				 d3.csv("SF_data_15.csv", function(error, data) {
+				 d3.csv("data/SF_data_15.csv", function(error, data) {
 	         		if (error) { //If error is not null, something went wrong.
 	             		console.log(error); //Log the error.
 	         		} else { //If no error, the file loaded correctly. Yay!
@@ -169,7 +145,7 @@
 	          scatterplot(dataset);
 	    	});	
 
-			});
+		});
 
       </script>
   </body>

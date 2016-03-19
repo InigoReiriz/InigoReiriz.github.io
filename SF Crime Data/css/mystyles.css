@@ -1,0 +1,25 @@
+.axis path { 
+    stroke: black;
+    stroke-width: 2;
+    fill: none;
+}
+            
+.axis line {
+    fill: black;
+    stroke: black;
+    shape-rendering: crispEdges¡;
+}
+            
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+p {
+    color: black;
+    font-family: sans-serif;
+}
+
+h1 {
+	font-family: sans-serif;
+}
