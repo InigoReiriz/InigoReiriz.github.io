@@ -16,10 +16,18 @@
 }
 
 p {
-    color: black;
+    color: #2F4F4F;
     font-family: sans-serif;
 }
 
 h1 {
 	font-family: sans-serif;
+    color: #000080;
+}
+
+mark {
+
+    font-family: sans-serif;
+    background-color: #DCDCDC;
+    color:  #00008B;
 }
