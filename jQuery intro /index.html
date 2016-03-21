@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Into to jQuery </title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>		
+		<style>
+			.blue{color:blue;};
+		</style>
+		<script> 
+			$(document).ready(function(){
+				$('.mylink').on('mouseenter', function(){
+					$('h1').addClass('blue');
+				});
+
+				$('.mylink').on('mouseleave', function(){
+					$('h1').removeClass('blue');
+				});
+
+				$('.mylink').on('click', function(){
+					$('h1').text("Hello World")
+				});
+			});
+
+		</script>
+	</head>
+	<body>
+		<h1> Welcome </h1>
+		<a href = "#" class = "mylink"> Click me </a>
+
+	</body>
+</html>
