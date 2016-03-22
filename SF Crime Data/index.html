@@ -15,14 +15,18 @@
          of vehicle theft incidents. By clicking on the text we can toggle between data from 2013 and 2015. Note
          that axes do not change from one scatterplot to the other but they fit the data from both years. 
       </p>
-      <h4> <mark> Click to visualize data from 2015 </mark></h4>
+      <button id="button2003" class="button" style="background-color:#DB7093;" >2003</button>
+      <button id="button2015" class="button" >2015</button>
       <div id="area1"></div>
       <h1> Visualization 2: Number of prostitution and vehicle thefts in San Francisco from 2003 to 2015</h1>
       <p> The visualization consists of one histogram which is able to switch between two datasets. The first dataset
          contains the number of prostitution incidents in SF from 2003 to 2015. The second one contains the number of 
          vehicle theft incidents in the same time interval. By clicking on the text we can toggle between the two datasets.
       </p>
-      <h5> <mark> Click to visualize the number of vehicle theft incidents from 2003 to 2015 </mark> </h5>
+      <button id="buttonProst" class="button" style="background-color:#DB7093;" >Prostitution</button>
+      <button id="buttonVtheft" class="button" >Vehicle Theft</button>
+      <br> </br>
+      <br> </br>
       <div id="area2"></div>
       <script type="text/javascript">
          /*########################### VISUALIZATION 1 ###############################*/
@@ -49,7 +53,7 @@
               }
               scales(dataset);
               scatterplot(dataset);
-               axis(dataset);
+              axis(dataset);
          });
          
          function scales(dataset){
@@ -140,95 +144,110 @@
                  	.attr("font-size", "12px")
                  	.attr("fill", "#483D8B")
                  	.attr('opacity', 1);
-           };
-           	
-           //On click, update with new data
-         d3.select("h4")
-           .on("click", function() {
-         //Overwrite dataset
-           d3.csv("data/SF_data_15.csv", function(error, data) {
-             			if (error) { //If error is not null, something went wrong.
-                 			console.log(error); //Log the error.
-             			} else { //If no error, the file loaded correctly. Yay!
-             				dataset = data;
-                			console.log(dataset)
-              			}
          
-                     svg.selectAll("circle")
-                       .data(dataset)
-                       .transition()
-                       .duration(1500)
-                       .ease("linear")
-                       .attr("cx", function(d) {
+         //On click, update with new data			
+         d3.selectAll("#button2003, #button2015")
+         .on("click", function() {
+         //See which button was clicked
+         var ID = d3.select(this).attr("id");
+         
+         //Decide which dataset to load
+         if (ID == "button2015") {
+         x = document.getElementById("button2003");
+         x.style.backgroundColor = "white";
+         x.style.color = "black";
+         this.style.backgroundColor = "#DB7093";
+         update_scatterplot("data/SF_data_15.csv");
+         }
+         else{
+         x = document.getElementById("button2015");
+         x.style.backgroundColor = "white";
+         x.style.color = "black";
+         this.style.backgroundColor = "#DB7093";
+         update_scatterplot("data/SF_data_03.csv");
+         }	
+         });
+         
+         }
+         
+         function update_scatterplot(filename){
+         
+           //Overwrite dataset
+            d3.csv(filename, function(error, data) {
+             	if (error) { //If error is not null, something went wrong.
+                 	console.log(error); //Log the error.
+             	} else { //If no error, the file loaded correctly. Yay!
+             		dataset = data;
+                	console.log(dataset)
+              	}
+         
+            svg.selectAll("circle")
+                    .data(dataset)
+                    .transition()
+                    .duration(1500)
+                    .ease("linear")
+                    .attr("cx", function(d) {
                          return xScale(parseInt(d.prostitution));
-                       })
-                       .attr("cy", function(d) {
+                    })
+                    .attr("cy", function(d) {
                          return yScale(parseInt(d.vtheft));
-                       })
-                       .attr("r", function(d) {
+                    })
+                    .attr("r", function(d) {
                          //substract by h so that the circles at the top are larger
                          return Math.sqrt((h - yScale(d.totalNumber)));
-                       })
-                       .attr('opacity', 0.3);
+                    })
+                    .attr('opacity', 0.3);
          
-                   svg.selectAll("text")
+            svg.selectAll("text")
                      .data(dataset)
                      .transition()
                      .duration(1500)
                      .ease("linear")
                      .text(function(d) {
-                       return d.district; 
+                       	   return d.district; 
                      })
                      .attr("x", function(d) {
-                       return xScale(parseInt(d.prostitution));
+                           return xScale(parseInt(d.prostitution));
                      })
                      .attr("y", function(d) {
-                       return yScale(parseInt(d.vtheft));
+                           return yScale(parseInt(d.vtheft));
                      })
                      .attr("font-family", "sans-serif")
                      .attr("font-size", "12px")
                      .attr("fill", "#483D8B")
                      .attr('opacity', 1);
          		});	
+         }
          
-         });
-              /*################## VISUALIZATION 2 #########################*/
+         /*################## VISUALIZATION 2 #########################*/
          
-              var barPadding = 1; //global variable
-              var w_hist = 500;
-              var h_hist = 200;
-              var yScale2;
-              var yScale3;
+          //global variables
+          var barPadding = 1; 
+          var w_hist = 500;
+          var h_hist = 200;
+          var yScale_hist;
          
-             d3.csv("data/SF_hist.csv", function(error, data) {
-                 if (error) { //If error is not null, something went wrong.
-                     console.log(error); //Log the error.
-                 } else { //If no error, the file loaded correctly. Yay!
-                     dataset = data;
-                     console.log(dataset)
-                     scales2(dataset)
-                     histogram(dataset);
-                     scales3(dataset);
+          d3.csv("data/prost.csv", function(error, data) {
+              if (error) { //If error is not null, something went wrong.
+                   console.log(error); //Log the error.
+              } else { //If no error, the file loaded correctly. Yay!
+                   dataset = data;
+                   console.log(dataset)
+                   scale_hist(dataset);
+                   histogram(dataset);
                }
-             });
+          });
          
-             function scales2(dataset){
-           
-             /*scale function for the y-axis*/
-             yScale2 = d3.scale.linear()
-                           .domain([0, d3.max(d3.values(dataset), function(d) { return parseInt(d.prost03_15); })])
-                           .range([h_hist-barPadding, barPadding]); //high values of y are at the top and low values at the bottom.
-             }
          
-             function scales3(dataset){
+          function scale_hist(dataset){
            
-             /*scale function for the y-axis*/
-             yScale3 = d3.scale.linear()
-                           .domain([0, d3.max(d3.values(dataset), function(d) { return parseInt(d.vtheft03_15); })])
+          		/*scale function for the y-axis*/
+          		yScale_hist = d3.scale.linear()
+                           .domain([0, d3.max(d3.values(dataset), function(d) { return parseInt(d.incidents); })])
                            .range([h_hist-barPadding, barPadding]); //high values of y are at the top and low values at the bottom.
-             }  
-             
-             function histogram(dataset){
+          }
+         
+          function histogram(dataset){
          
                //Create SVG element
                svg2 = d3.select("#area2")
@@ -242,35 +261,66 @@
                    .append("rect")
                    .attr({
                        x: function(d, i) { return i * (w_hist / dataset.length); },
-                       y: function(d) { return ((yScale2(parseInt(d.prost03_15)))); },
+                       y: function(d) { return ((yScale_hist(parseInt(d.incidents)))); },
                        width: w_hist / dataset.length - barPadding,
-                       height: function(d) { return yScale2(parseInt(d.prost03_15)) + h_hist ; },
-                       fill: function(d) { return "rgb(0, 0, " + (parseInt(d.prost03_15)) + ")"; }
+                       height: function(d) { return yScale_hist(parseInt(d.incidents)) + h_hist ; },
+                       fill: function(d) { return "rgb(0, 0, " + (parseInt(d.incidents)) + ")"; }
          
-               });
+         			});
          
+               svg2.selectAll("text")
+               	   .data(dataset)
+               	   .enter()
+                .append("text")
+                .text(function(d) {
+                  	return d.incidents;
+                })
+                .attr("x", function(d, i) {
+                  	return i * (w_hist / dataset.length) + 5;
+                })
+                .attr("y", function(d) {
+                  	return yScale_hist(parseInt(d.incidents)) + 15;
+                })
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "12px")
+                .attr("fill", "white");
          
-              svg2.selectAll("text")
-               .data(dataset)
-               .enter()
-               .append("text")
-               .text(function(d) {
-                 return d.prost03_15;
-               })
-               .attr("x", function(d, i) {
-                 return i * (w_hist / dataset.length) + 5;
-               })
-               .attr("y", function(d) {
-                 return yScale2(parseInt(d.prost03_15)) + 15;
-               })
-               .attr("font-family", "sans-serif")
-               .attr("font-size", "12px")
-               .attr("fill", "white");
-             };
+                	//On click, update with new data			
+         d3.selectAll("#buttonProst, #buttonVtheft")
+         .on("click", function() {
+         //See which button was clicked
+         var ID = d3.select(this).attr("id");
          
-              //On click, update with new data
-             d3.select("h5")
-               .on("click", function() {
+         //Decide which dataset to load
+         if (ID == "buttonVtheft") {
+         v = document.getElementById("buttonVtheft");
+         v.style.backgroundColor = "white";
+         v.style.color = "black";
+         this.style.backgroundColor = "#DB7093";
+         update_hist("data/vtheft.csv");
+         }
+         else{
+         v = document.getElementById("buttonProst");
+         v.style.backgroundColor = "white";
+         v.style.color = "black";
+         this.style.backgroundColor = "#DB7093";
+         update_hist("data/prost.csv");
+         }	
+         });
+         }
+         
+         function update_hist(filename){
+         
+         	//Overwrite dataset
+            d3.csv(filename, function(error, data) {
+             	if (error) { //If error is not null, something went wrong.
+                 	console.log(error); //Log the error.
+             	} else { //If no error, the file loaded correctly. Yay!
+             		dataset = data;
+                	console.log(dataset)
+              	}
+         
+              	scale_hist(dataset)
          
                  svg2.selectAll("rect")
                    .data(dataset)
@@ -279,31 +329,33 @@
                    .ease("linear")
                    .attr({
                        x: function(d, i) { return i * (w_hist / dataset.length); },
-                       y: function(d) { return ((yScale3(parseInt(d.vtheft03_15)))); },
+                       y: function(d) { return ((yScale_hist(parseInt(d.incidents)))); },
                        width: w_hist / dataset.length - barPadding,
-                       height: function(d) { return yScale3(parseInt(d.vtheft03_15)) + h_hist ; },
-                       fill: function(d) { return "rgb(0, 0, " + (parseInt(d.vtheft03_15)) + ")"; }
+                       height: function(d) { return yScale_hist(parseInt(d.incidents)) + h_hist ; },
+                       fill: function(d) { return "rgb(0, 0, " + (parseInt(d.incidents)) + ")"; }
                    });
          
+         		 
                  svg2.selectAll("text")
                    .data(dataset)
                    .transition()
                    .duration(1500)
                    .ease("linear")
                    .text(function(d) {
-                     return d.vtheft03_15;
+                     return d.incidents;
                    })
                    .attr("x", function(d, i) {
                      return i * (w_hist / dataset.length) + 2.5;
                    })
                    .attr("y", function(d) {
-                     return yScale3(parseInt(d.vtheft03_15)) + 15;
+                     return yScale_hist(parseInt(d.incidents)) + 15;
                    })
                    .attr("font-family", "sans-serif")
                    .attr("font-size", "12px")
                    .attr("fill", "white");
                });
-         
+         }
+                 
       </script>
    </body>
 </html>
