@@ -25,11 +25,14 @@ h1 {
     color: #000080;
 }
 
-mark {
-
+li { 
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+    color: #2F4F4F;
     font-family: sans-serif;
-    background-color: #DCDCDC;
-    color:  #00008B;
 }
 
 .button {
@@ -44,4 +47,21 @@ mark {
     background-color: white; 
     color: black; 
     border: 2px solid #555555;
+}
+
+.bar{
+    fill:#008CBA;
+}
+
+div.tooltip {   
+    position: absolute;         
+    text-align: center;         
+    width: 60px;                    
+    height: 28px;                   
+    padding: 2px;               
+    font: 12px sans-serif;      
+    background: lightsteelblue; 
+    border: 0px;        
+    border-radius: 8px;         
+    pointer-events: none;           
 }
