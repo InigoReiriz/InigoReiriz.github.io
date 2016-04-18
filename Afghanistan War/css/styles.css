@@ -18,24 +18,8 @@ h1 {
   color: #000080;
 }
 
-caption{
-  font-family: sans-serif;
-  color: #000080;
-  font-size: 20px;
-}
-
-.tableleft{
-  float:left;
-  margin-left: 300px;
-}
-
-.tableright{
-  float:right;
-  margin-right: 300px;
-}
-
 .bottom{
-  margin-top: 350px;
+  margin-top: 100px;
   margin-left: 150px;
 }
 
