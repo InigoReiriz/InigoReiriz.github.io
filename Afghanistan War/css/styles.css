@@ -23,8 +23,16 @@ h1 {
   margin-left: 100px;
 }
 
+.title{
+  margin-left: 100px;
+}
+
 .area1pos{
-  margin-left:150px;
+  margin-left:170px;
+}
+
+.area2pos{
+  margin-left:30px;
 }
 
 /* table */
@@ -64,9 +72,4 @@ div.tooltip {
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
-}
-
-/* hover bar chart */
-div#C rect:hover {
-		fill: orange;
 }
