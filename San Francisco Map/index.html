@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <link href="css/mystyles.css" rel="stylesheet">
+      <meta charset="utf-8">
+      <title>Visualizing geodata</title>
+      <script type="text/javascript" src="../d3/d3.js"></script>
+  </head>
+  <body>
+      <button id="buttonK2" class="button" style="background-color:#DC143C;" >K=2</button>
+      <button id="buttonK3" class="button"> K=3</button>
+      <button id="buttonK4" class="button"> K=4</button>
+      <script type="text/javascript">
+
+          /*######## Creating Bounding Box ############*/
+
+          var projection = d3.geo.mercator();
+
+          //global variables
+          var margin = {top: 20, right: 20, bottom: 30, left: 60},
+          width = 1000 - margin.left - margin.right,
+          height = 700 - margin.top - margin.bottom;
+
+          var lattop = 37.831575;
+          var lonleft = -122.514949;
+          var lonright = -120.906983;
+  
+          // make the scale so that the difference of longitude is 
+          // exactly the width of the image
+          var scale = 360*width/(lonright-lonleft);
+          projection.scale(scale);
+
+          // translate the origin of the map to [0,0] as a start, 
+          // not to the now meaningless default of [480,250]
+          projection.translate([0,0]);
+
+          // check where your top left coordinate is projected
+          var trans = projection([lonleft,lattop]);
+          // translate your map in the negative direction of that result
+          projection.translate([-1*trans[0],-1*trans[1]]);
+
+          var path = d3.geo.path()
+                          .projection(projection);
+
+          //Create SVG element
+          svg = d3.select("body").append("svg")
+             .attr("width", width + margin.left + margin.right)
+             .attr("height", height + margin.top + margin.bottom)
+             .append("g")
+             .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); 
+
+          //sfpddistricts.geojson
+          d3.json("data/sfpddistricts.geojson.json", function(json) {
+              svg.selectAll("path")
+              .data(json.features)
+              .enter()
+              .append("path")
+              .attr("d", path)
+              .style("fill", "steelblue");
+
+              svg.selectAll("text")
+                .data(json.features)
+                .enter()
+                .append("svg:text")
+                .text(function(d){
+                    return d.properties.DISTRICT;
+                })
+                .attr("x", function(d){
+                    return path.centroid(d)[0];
+                })
+                .attr("y", function(d){
+                    return  path.centroid(d)[1];
+                })
+                .attr("text-anchor","middle")
+                .attr('font-size','15px')
+                .attr('font-family','sans-serif')
+                .attr('fill','black');
+
+                d3.csv("data/geodata_PROST_2.csv", function(data) {
+                    svg.selectAll("circle")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("cx", function(d) {
+                        return projection([d.lon, d.lat])[0];
+                    })
+                    .attr("cy", function(d) {
+                        return projection([d.lon, d.lat])[1];
+                    })  
+                    .attr("r", 5)
+                    .style("fill", function(d){
+
+                      if (d.label == 0){
+                        return "#2E8B57"
+                      }
+                      else if (d.label == 1){
+                        return "#F08080"
+                      }
+                      else if (d.label==2){
+                        return "#6A5ACD"
+                      }
+                      else if (d.label==3){
+                        return "#2F4F4F"
+                      }
+                    })
+                    .style("opacity", 0.45);
+              });
+
+                d3.csv("data/K2.csv", function(data) {
+                    svg.selectAll("circle")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("cx", function(d) {
+                        return projection([d.lon, d.lat])[0];
+                    })
+                    .attr("cy", function(d) {
+                        return projection([d.lon, d.lat])[1];
+                    })  
+                    .attr("r", 10)
+                    .style("stroke-opacity", 1) 
+                    .style("stroke-width", 5) 
+                    .style("stroke", "black")    // set the line colour
+                    .style("fill", "none")  
+                    .style("opacity", 1);
+              });
+
+
+                //On click, update with new data      
+              d3.selectAll("#buttonK2, #buttonK3, #buttonK4")
+                  .on("click", function() {
+                    //See which button was clicked
+                    var ID = d3.select(this).attr("id");
+               
+                     //Decide which dataset to load
+                     if (ID == "buttonK2") {
+                          x = document.getElementById("buttonK3");
+                          x.style.backgroundColor = "white";
+                          x.style.color = "black";
+                          y = document.getElementById("buttonK4");
+                          y.style.backgroundColor = "white";
+                          y.style.color = "black";
+                          this.style.backgroundColor = "#DC143C";
+                          update_map("data/geodata_PROST_2.csv", "data/K2.csv");
+                     }
+                       else if (ID == "buttonK3"){
+                          x = document.getElementById("buttonK2");
+                          x.style.backgroundColor = "white";
+                          x.style.color = "black";
+                          y = document.getElementById("buttonK4");
+                          y.style.backgroundColor = "white";
+                          y.style.color = "black";
+                          this.style.backgroundColor = "#2E8B57";
+                          update_map("data/geodata_PROST_3.csv", "data/K3.csv");
+                      }
+                       else if (ID == "buttonK4"){
+                          x = document.getElementById("buttonK2");
+                          x.style.backgroundColor = "white";
+                          x.style.color = "black";
+                          y = document.getElementById("buttonK3");
+                          y.style.backgroundColor = "white";
+                          y.style.color = "black";
+                          this.style.backgroundColor = "#6A5ACD";
+                          update_map("data/geodata_PROST_4.csv", "data/K4.csv");
+                      } 
+                });
+
+                function update_map(file_geodata, file_centroid){
+
+                  d3.csv(file_geodata, function(data) {
+                    svg.selectAll("circle")
+                    .data(data)
+                    .attr("cx", function(d) {
+                        return projection([d.lon, d.lat])[0];
+                    })
+                    .attr("cy", function(d) {
+                        return projection([d.lon, d.lat])[1];
+                    })  
+                    .attr("r", 5)
+                    .style("fill", function(d){
+
+                      if (d.label == 0){
+                        return "#2E8B57"
+                      }
+                      else if (d.label == 1){
+                        return "#F08080"
+                      }
+                      else if (d.label==2){
+                        return "#6A5ACD"
+                      }
+                      else if (d.label==3){
+                        return "#2F4F4F"
+                      }
+                    })
+                    .style("opacity", 0.45);
+
+                  d3.csv(file_centroid, function(data) {
+                    svg.selectAll("circle")
+                    .data(data)
+                    .attr("cx", function(d) {
+                        return projection([d.lon, d.lat])[0];
+                    })
+                    .attr("cy", function(d) {
+                        return projection([d.lon, d.lat])[1];
+                    })  
+                    .attr("r", 10)
+                    .style("stroke-opacity", 1) 
+                    .style("stroke-width", 5) 
+                    .style("stroke", "black")    // set the line colour
+                    .style("fill", "none")  
+                    .style("opacity", 1);
+
+                  });
+              });
+
+            }
+
+          });
+
+      </script>
+  </body>
+</html>
