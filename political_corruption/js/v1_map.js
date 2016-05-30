@@ -125,7 +125,8 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 
 		// Add fillings from GeoJSON
 		.style("fill", function() {
-			return "#FAEBD7";
+			var randomNumberBetween0and180 = Math.floor(Math.random() * 150);
+			return d3.interpolate("#ffffcc", "#800026")(randomNumberBetween0and180/100);
 		})
 		.style("stroke", function(d) {
 			return "black";
@@ -136,18 +137,18 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 		.style("stroke-width", function(d) {
 			return "2.5px";
 		})
+		.style("opacity", .8)
 
 		// Add and remove a hover effect with tooltip
 		.on("mouseover", function(d){
-			color = d3.rgb(d.properties['fill'])
 			d3.select(this)
+			.transition()
+			.duration(500)
+			.style("opacity", .5)
+		tool
 				.transition()
 				.duration(500)
-				.style('fill', "steelblue")
-			tool
-				.transition()
-				.duration(500)
-				.style("opacity", "1")
+				.style("opacity", 1)
 				.style("display", "block")
 			tool
 				.html(d.properties.name)
@@ -159,11 +160,12 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 			d3.select(this)
 				.transition()
 				.duration(500)
-				.style('fill', "#FAEBD7")
+				.style("opacity", .8)
 			tool.transition()
 				.duration(500)
 				.style("opacity", "0")
 				.style("display", "none")
+
 		});
 	}
 
