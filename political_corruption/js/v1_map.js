@@ -89,6 +89,41 @@ var tool = d3.select("body").append("div")
 			.style("opacity", "0")
 			.style("display", "none");
 
+			// add circles, scaled to death toll
+d3.json("data/casos_comunidad_fixed.json", function(error, collection) {
+			if (error) throw error;
+
+			/* Add a LatLng object to each item in the dataset */
+			collection.objects.forEach(function(d) {
+				d.LatLng = new L.LatLng(d.circle.coordenadas[0],
+											d.circle.coordenadas[1])
+			});
+
+			var feature = g_circles.selectAll("circle")
+					.data(collection.objects)
+					.enter().append("circle")
+					.style("stroke", "black")
+					.style("stroke-width", "1.5px")
+					.style("opacity", .6)
+					.style("fill", "steelblue")
+					.attr("r", function(d) {
+						return 8;
+					});
+
+			map1.on("viewreset", update);
+			update();
+			function update() {
+
+			feature.attr("transform",
+					function(d) {
+						return "translate("+
+							map1.latLngToLayerPoint(d.LatLng).x +","+
+							map1.latLngToLayerPoint(d.LatLng).y +")";
+						}
+					)
+				}
+		});
+
 // mapdata from: https://ckhickey.cartodb.com/tables/afghanistan_provinces_geometry/public
 d3.json("data/spain-communities.geojson", function(error, collection) {
 	if (error) throw error;
@@ -145,15 +180,6 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 			.transition()
 			.duration(500)
 			.style("opacity", .5)
-		tool
-				.transition()
-				.duration(500)
-				.style("opacity", 1)
-				.style("display", "block")
-			tool
-				.html(d.properties.name)
-				.style("top", (d3.event.pageY - 150) + "px")
-				.style("left", (d3.event.pageX - 100) + "px");
 
 		})
 		.on("mouseout", function(d){
@@ -161,11 +187,6 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 				.transition()
 				.duration(500)
 				.style("opacity", .8)
-			tool.transition()
-				.duration(500)
-				.style("opacity", "0")
-				.style("display", "none")
-
 		});
 	}
 
