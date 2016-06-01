@@ -80,17 +80,13 @@ map1.on('click', onMapClick);
 var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 	g = svgMap.append("g").attr("class", "leaflet-zoom-hide regions"),
 	g_circles = svgMap.append("g").attr("class", "leaflet-zoom-hide");
-
-var legend;
-
-// add the tooltip area to the webpage
-var tool = d3.select("body").append("div")
-			.attr("class", "tooltipMap")
-			.style("opacity", "0")
-			.style("display", "none");
-
-			// add circles, scaled to death toll
-d3.json("data/casos_comunidad_fixed.json", function(error, collection) {
+/*
+	var tool = d3.select("body").append("div")
+				.attr("class", "tooltipMap")
+				.style("opacity", "0")
+				.style("display", "none");
+*/
+	d3.json("data/casos_comunidad_fixed.json", function(error, collection) {
 			if (error) throw error;
 
 			/* Add a LatLng object to each item in the dataset */
@@ -109,6 +105,16 @@ d3.json("data/casos_comunidad_fixed.json", function(error, collection) {
 					.attr("r", function(d) {
 						return 8;
 					});
+
+      $('svg circle').tipsy({
+        gravity: 'w',
+        html: true,
+        title: function() {
+          var d = this.__data__;
+					return "<b>Comunidad: " + d.circle.comunidad + "</b>" +
+					"<div style='font-size: 10px'><b>Capital: </b>" + d.circle.capital + "</div>";
+        }
+      });
 
 			map1.on("viewreset", update);
 			update();
@@ -173,7 +179,7 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 			return "2.5px";
 		})
 		.style("opacity", .8)
-
+		/*
 		// Add and remove a hover effect with tooltip
 		.on("mouseover", function(d){
 			d3.select(this)
@@ -187,7 +193,7 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 				.transition()
 				.duration(500)
 				.style("opacity", .8)
-		});
+		});*/
 	}
 
 	// Use Leaflet to implement a D3 geometric transformation.
