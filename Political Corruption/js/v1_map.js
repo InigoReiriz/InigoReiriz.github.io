@@ -111,8 +111,9 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
         html: true,
         title: function() {
           var d = this.__data__;
-					return "<b>Comunidad: " + d.circle.comunidad + "</b>" +
-					"<div style='font-size: 10px'><b>Capital: </b>" + d.circle.capital + "</div>";
+					return "<b>" + d.circle.comunidad + "</b>" +
+					"<div style='font-size: 10px'><b> Casos: </b>" + d.circle.caso + "</div>" +
+					"<div style='font-size: 10px'><b> Partidos: </b>" + d.circle.partido + "</div>";
         }
       });
 
