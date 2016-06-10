@@ -86,7 +86,7 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 				.style("opacity", "0")
 				.style("display", "none");
 
-	d3.json("data/casos_comunidad_fixed.json", function(error, collection) {
+	d3.json("data/casos_comunidad.json", function(error, collection) {
 			if (error) throw error;
 
 			/* Add a LatLng object to each item in the dataset */
@@ -106,16 +106,24 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 						return 8;
 					});
 
-      $('div#map1 svg g circle').tipsy({
-        gravity: 'w',
-        html: true,
-        title: function() {
-          var d = this.__data__;
-					return "<b>" + d.circle.comunidad + "</b>" +
-					"<div style='font-size: 10px'><b> Casos: </b>" + d.circle.caso + "</div>" +
-					"<div style='font-size: 10px'><b> Partidos: </b>" + d.circle.partido + "</div>";
-        }
-      });
+			function generate_text(d) {
+				var html_text = "";
+				for (var i = 0; i < d.circle.caso_partido.length; i++) {
+    			html_text += "<div style='font-size: 10px'><b></b>" + d.circle.caso_partido[i][0] + " (" + d.circle.caso_partido[i][1] + ")"
+																																																				+ "</div><br>";
+				}
+				return html_text;
+			}
+
+			$('div#map1 svg g circle').tipsy({
+				gravity: 'w',
+				html: true,
+				title: function() {
+					var d = this.__data__;
+					var text = generate_text(d);
+					return text;
+					}
+			});
 
 			map1.on("viewreset", update);
 			update();
