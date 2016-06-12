@@ -99,11 +99,11 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 					.data(collection.objects)
 					.enter().append("circle")
 					.style("stroke", "black")
-					.style("stroke-width", "1.5px")
-					.style("opacity", .6)
+					.style("stroke-width", "3.5px")
+					.style("opacity", .9)
 					.style("fill", "steelblue")
 					.attr("r", function(d) {
-						return 8;
+						return 9;
 					});
 
 			function generate_text(d) {
@@ -154,6 +154,15 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 
 	var color;
 
+	function getColor(d) {
+	return d > 400 ? '#800026' :
+				 d > 300  ? '#FC4E2A' :
+				 d > 200   ? '#FD8D3C' :
+				 d > 100   ? '#FEB24C' :
+				 d > 50   ? '#FED976' :
+										'#FFEDA0';
+	};
+
 	// Handle zoom of the map and repositioning of d3 overlay
 	map1.on("viewreset", reset);
 	reset();
@@ -173,11 +182,10 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 		// Add colors and other fillings for every feature
 		feature.attr("d", path)
 
-		// Add fillings from GeoJSON
-		.style("fill", function() {
-			var randomNumberBetween0and180 = Math.floor(Math.random() * 150);
-			return d3.interpolate("#ffffcc", "#800026")(randomNumberBetween0and180/100);
-		})
+		.style("fill", function()  {
+			var randomNumberBetween0and180 = Math.floor(Math.random() * 500)
+    	return getColor(randomNumberBetween0and180)
+	  })
 		.style("stroke", function(d) {
 			return "black";
 		})
