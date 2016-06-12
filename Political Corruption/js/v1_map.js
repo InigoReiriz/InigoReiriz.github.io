@@ -109,8 +109,7 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 			function generate_text(d) {
 				var html_text = "<b>" + d.circle.comunidad + "</b>";
 				for (var i = 0; i < d.circle.caso_partido.length; i++) {
-    			html_text += "<div style='font-size: 10px'><b></b>" + d.circle.caso_partido[i][0] + " (" + d.circle.caso_partido[i][1] + ")"
-																																																				+ "</div><br>";
+    			html_text += "<div style=font-size: 12px'><b></b>" + d.circle.caso_partido[i][0] + " (" + d.circle.caso_partido[i][1] + ")"																																																				+ "</div><br>";
 				}
 				return html_text;
 			}
