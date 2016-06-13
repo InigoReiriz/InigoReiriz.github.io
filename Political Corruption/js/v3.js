@@ -21,7 +21,7 @@ var svg = d3.select("div#vis3").append("svg")
     .attr("class", "graph")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("../data/data.tsv", type, function(error, data) {
+d3.tsv("data/data.tsv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.year; }));
   y0.domain([0, d3.max(data, function(d) { return d.money; })]);
 
