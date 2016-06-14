@@ -107,9 +107,11 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 					});
 
 			function generate_text(d) {
-				var html_text = "<b>" + d.circle.comunidad + "</b>";
+				var html_text = "<mark><b>" + d.circle.comunidad + "</mark></b>";
+				html_text += "<br></br>"
 				for (var i = 0; i < d.circle.caso_partido.length; i++) {
-    			html_text += "<div style=font-size: 12px'><b></b>" + d.circle.caso_partido[i][0] + " (" + d.circle.caso_partido[i][1] + ")"																																																				+ "</div><br>";
+    			html_text += "<div style=font-size: 12px>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"																																																				+ "</div><br>";
 				}
 				return html_text;
 			}

@@ -37,3 +37,8 @@ body .tooltipMap span {
 .language{
 	margin-left:1200px;
 }
+
+mark {
+    background-color: white;
+    color: black;
+}
