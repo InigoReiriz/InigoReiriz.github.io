@@ -81,7 +81,9 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 	g = svgMap.append("g").attr("class", "leaflet-zoom-hide regions"),
 	g_circles = svgMap.append("g").attr("class", "leaflet-zoom-hide");
 
-	var tool = d3.select("body").append("div")
+var legend;
+
+var tool = d3.select("body").append("div")
 				.attr("class", "tooltipMap")
 				.style("opacity", "0")
 				.style("display", "none");
@@ -101,7 +103,7 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 					.style("stroke", "black")
 					.style("stroke-width", "3.5px")
 					.style("opacity", .9)
-					.style("fill", "steelblue")
+					.style("fill", "#808080")
 					.attr("r", function(d) {
 						return 9;
 					});
@@ -141,7 +143,7 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 		});
 
 // mapdata from: https://ckhickey.cartodb.com/tables/afghanistan_provinces_geometry/public
-d3.json("data/spain-communities.geojson", function(error, collection) {
+d3.json("data/spain-communities-final.geojson", function(error, collection) {
 	if (error) throw error;
 
 	var transform = d3.geo.transform({
@@ -153,16 +155,45 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 		.data(collection.features)
 		.enter().append("path");
 
-	var color;
+		var items = collection.features;
+		var legend_data = [];
+		var lookup = {};
 
-	function getColor(d) {
-	return d > 400 ? '#800026' :
-				 d > 300  ? '#FC4E2A' :
-				 d > 200   ? '#FD8D3C' :
-				 d > 100   ? '#FEB24C' :
-				 d > 50   ? '#FED976' :
-										'#FFEDA0';
-	};
+		// function to get distinct regions for legend
+		for (var item, i = 0; item = items[i++];) {
+			var name = item.properties.partido;
+			var color = item.properties.color;
+
+			if (!(name in lookup)) {
+				lookup[name] = 1;
+				legend_data.push({
+					color: color,
+					name: name
+				});
+			}
+		}
+		console.log(legend_data)
+		legend = d3.select("div#map1").append("svg")
+			.attr("class", "legend")
+			.attr("width", 100)
+			.attr("height", 100)
+			.style("background-color", "rgba(255, 255, 255, 0.8)")
+			.style("top", "428px")
+			.selectAll("g")
+			.data(legend_data)
+			.enter().append("g")
+			.attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
+
+		legend.append("rect")
+			.attr("width", 18)
+			.attr("height", 18)
+			.style("fill", function(d) { return d.color; });
+
+		legend.append("text")
+			.attr("x", 24)
+			.attr("y", 9)
+			.attr("dy", ".35em")
+			.text(function(d) { return d.name; });
 
 	// Handle zoom of the map and repositioning of d3 overlay
 	map1.on("viewreset", reset);
@@ -182,10 +213,8 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 
 		// Add colors and other fillings for every feature
 		feature.attr("d", path)
-
-		.style("fill", function()  {
-			var randomNumberBetween0and180 = Math.floor(Math.random() * 500)
-    	return getColor(randomNumberBetween0and180)
+		.style("fill", function(d){
+			return d.properties.color;
 	  })
 		.style("stroke", function(d) {
 			return "black";
