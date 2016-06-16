@@ -112,8 +112,20 @@ var tool = d3.select("body").append("div")
 				var html_text = "<mark><b>" + d.circle.comunidad + "</mark></b>";
 				html_text += "<br></br>"
 				for (var i = 0; i < d.circle.caso_partido.length; i++) {
-    			html_text += "<div style=font-size: 12px>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+					if (d.circle.caso_partido[i][1] == 'PP'){
+    				html_text += "<div style=color:#000080;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
 																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"																																																				+ "</div><br>";
+					}
+					else if ((d.circle.caso_partido[i][1] == 'PSOE')) {
+						html_text += "<div style=color:#FF0000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+					else{
+						html_text += "<div style=font-size=12px;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+					  html_text += "<br></br>"
+					}
 				}
 				return html_text;
 			}
