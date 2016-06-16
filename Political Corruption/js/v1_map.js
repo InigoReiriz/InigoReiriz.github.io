@@ -121,6 +121,91 @@ var tool = d3.select("body").append("div")
 																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
 						html_text += "<br></br>"
 					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PNV')) {
+						html_text += "<div style=color:#008000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PSE-EE')) {
+						html_text += "<div style=color:#FF0000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PSIB-PSOE')) {
+						html_text += "<div style=color:#FF0000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PSC-PSOE')) {
+						html_text += "<div style=color:#FF0000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'UM')) {
+						html_text += "<div style=color:#808000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'CiU')) {
+						html_text += "<div style=color:#FFA500;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'CDC')) {
+						html_text += "<div style=color:#008000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'UDC')) {
+						html_text += "<div style=color:#FF69B4	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'ERC')) {
+						html_text += "<div style=color:black	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'UPN')) {
+						html_text += "<div style=color:#800000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'UCOR')) {
+						html_text += "<div style=color:#2E8B57;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'GIL')) {
+						html_text += "<div style=color:#2F4F4F	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'CC')) {
+						html_text += "<div style=color:#006400	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PNL-NC')) {
+						html_text += "<div style=color:#8B0000	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
 					else{
 						html_text += "<div style=font-size=12px;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
 																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
