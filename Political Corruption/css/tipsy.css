@@ -1,8 +1,8 @@
 .tipsy { font-size: 11px; position: absolute; padding: 5px; z-index: 100000; }
-  .tipsy-inner { background-color: #D3D3D3	; color:black; max-width: 500px; padding: 5px 8px 4px 8px; text-align: center; }
+  .tipsy-inner { background-color: 	#F5DEB3	; color:black; max-width: 500px; padding: 5px 8px 4px 8px; text-align: center; }
 
   /* Rounded corners */
-  .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+  .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-width: 5px; border-style: solid;}
 
   /* Uncomment for shadow */
   /*.tipsy-inner { box-shadow: 0 0 5px #000000; -webkit-box-shadow: 0 0 5px #000000; -moz-box-shadow: 0 0 5px #000000; }*/
