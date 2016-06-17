@@ -13,15 +13,11 @@ $(document).ready(function () {
     //circleColor: use @default
     data: {
       items: [
-        {text: "Java", count: "236"},
-        {text: ".Net", count: "382"},
-        {text: "Php", count: "170"},
-        {text: "Ruby", count: "123"},
-        {text: "D", count: "12"},
-        {text: "Python", count: "170"},
-        {text: "C/C++", count: "382"},
-        {text: "Pascal", count: "10"},
-        {text: "Something", count: "170"},
+        {text: "CiU", count: "18"},
+        {text: "Ciudadanos", count: "1"},
+        {text: "PP", count: "138"},
+        {text: "PSOE", count: "87"},
+        {text: "PSC", count: "8"},
       ],
       eval: function (item) {return item.count;},
       classed: function (item) {return item.text.split(" ").join("");}
@@ -30,14 +26,14 @@ $(document).ready(function () {
       {
         name: "central-click",
         options: {
-          text: "(See more detail)",
           style: {
-            "font-size": "12px",
+            "font-size": "14px",
             "font-style": "italic",
             "font-family": "Source Sans Pro, sans-serif",
             //"font-weight": "700",
             "text-anchor": "middle",
-            "fill": "white"
+            "font-weight": "bold",
+            "fill": "black"
           },
           attr: {dy: "65px"},
           centralClick: function() {
@@ -56,6 +52,7 @@ $(document).ready(function () {
                 "font-size": "28px",
                 "font-family": "Source Sans Pro, sans-serif",
                 "text-anchor": "middle",
+                "font-weight": "bold",
                 fill: "white"
               },
               attr: {
@@ -71,6 +68,7 @@ $(document).ready(function () {
                 "font-size": "14px",
                 "font-family": "Source Sans Pro, sans-serif",
                 "text-anchor": "middle",
+                "font-weight": "bold",
                 fill: "white"
               },
               attr: {
