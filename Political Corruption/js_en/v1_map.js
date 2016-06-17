@@ -81,7 +81,9 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 	g = svgMap.append("g").attr("class", "leaflet-zoom-hide regions"),
 	g_circles = svgMap.append("g").attr("class", "leaflet-zoom-hide");
 
-	var tool = d3.select("body").append("div")
+var legend;
+
+var tool = d3.select("body").append("div")
 				.attr("class", "tooltipMap")
 				.style("opacity", "0")
 				.style("display", "none");
@@ -101,15 +103,114 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 					.style("stroke", "black")
 					.style("stroke-width", "3.5px")
 					.style("opacity", .9)
-					.style("fill", "steelblue")
+					.style("fill", "#808080")
 					.attr("r", function(d) {
 						return 9;
 					});
 
 			function generate_text(d) {
-				var html_text = "<b>" + d.circle.comunidad + "</b>";
+				var html_text = "<mark><b>" + d.circle.comunidad + "</mark></b>";
+				html_text += "<br></br>"
 				for (var i = 0; i < d.circle.caso_partido.length; i++) {
-    			html_text += "<div style=font-size: 12px'><b></b>" + d.circle.caso_partido[i][0] + " (" + d.circle.caso_partido[i][1] + ")"																																																				+ "</div><br>";
+					if (d.circle.caso_partido[i][1] == 'PP'){
+    				html_text += "<div style=color:#000080;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"																																																				+ "</div><br>";
+					}
+					else if ((d.circle.caso_partido[i][1] == 'PSOE')) {
+						html_text += "<div style=color:#FF0000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PNV')) {
+						html_text += "<div style=color:#008000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PSE-EE')) {
+						html_text += "<div style=color:#FF0000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PSIB-PSOE')) {
+						html_text += "<div style=color:#FF0000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PSC-PSOE')) {
+						html_text += "<div style=color:#FF0000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'UM')) {
+						html_text += "<div style=color:#808000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'CiU')) {
+						html_text += "<div style=color:#FFA500;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'CDC')) {
+						html_text += "<div style=color:#008000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'UDC')) {
+						html_text += "<div style=color:#FF69B4	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'ERC')) {
+						html_text += "<div style=color:black	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'UPN')) {
+						html_text += "<div style=color:#800000;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'UCOR')) {
+						html_text += "<div style=color:#2E8B57;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'GIL')) {
+						html_text += "<div style=color:#2F4F4F	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'CC')) {
+						html_text += "<div style=color:#006400	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else if ((d.circle.caso_partido[i][1] == 'PNL-NC')) {
+						html_text += "<div style=color:#8B0000	;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+						html_text += "<br></br>"
+					}
+
+					else{
+						html_text += "<div style=font-size=12px;>" + "<ins>" + d.circle.caso_partido[i][0] + "</ins>" +
+																											" <b>(" + d.circle.caso_partido[i][1] + ")</b>"
+					  html_text += "<br></br>"
+					}
 				}
 				return html_text;
 			}
@@ -151,16 +252,44 @@ d3.json("../data/spain-communities.geojson", function(error, collection) {
 		.data(collection.features)
 		.enter().append("path");
 
-	var color;
+		var items = collection.features;
+		var legend_data = [];
+		var lookup = {};
 
-	function getColor(d) {
-	return d > 400 ? '#800026' :
-				 d > 300  ? '#FC4E2A' :
-				 d > 200   ? '#FD8D3C' :
-				 d > 100   ? '#FEB24C' :
-				 d > 50   ? '#FED976' :
-										'#FFEDA0';
-	};
+		// function to get distinct regions for legend
+		for (var item, i = 0; item = items[i++];) {
+			var name = item.properties.partido;
+			var color = item.properties.color;
+
+			if (!(name in lookup)) {
+				lookup[name] = 1;
+				legend_data.push({
+					color: color,
+					name: name
+				});
+			}
+		}
+		legend = d3.select("div#map1").append("svg")
+			.attr("class", "legend")
+			.attr("width", 100)
+			.attr("height", 200)
+			.style("background-color", "rgba(255, 255, 255, 0.8)")
+			.style("top", "408px")
+			.selectAll("g")
+			.data(legend_data)
+			.enter().append("g")
+			.attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
+
+		legend.append("rect")
+			.attr("width", 18)
+			.attr("height", 18)
+			.style("fill", function(d) { return d.color; });
+
+		legend.append("text")
+			.attr("x", 24)
+			.attr("y", 9)
+			.attr("dy", ".35em")
+			.text(function(d) { return d.name; });
 
 	// Handle zoom of the map and repositioning of d3 overlay
 	map1.on("viewreset", reset);
@@ -180,10 +309,8 @@ d3.json("../data/spain-communities.geojson", function(error, collection) {
 
 		// Add colors and other fillings for every feature
 		feature.attr("d", path)
-
-		.style("fill", function()  {
-			var randomNumberBetween0and180 = Math.floor(Math.random() * 500)
-    	return getColor(randomNumberBetween0and180)
+		.style("fill", function(d){
+			return d.properties.color;
 	  })
 		.style("stroke", function(d) {
 			return "black";
