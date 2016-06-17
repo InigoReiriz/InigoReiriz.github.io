@@ -240,7 +240,7 @@ var tool = d3.select("body").append("div")
 		});
 
 // mapdata from: https://ckhickey.cartodb.com/tables/afghanistan_provinces_geometry/public
-d3.json("data/spain-communities-final.geojson", function(error, collection) {
+d3.json("data/spain-communities.geojson", function(error, collection) {
 	if (error) throw error;
 
 	var transform = d3.geo.transform({
