@@ -269,7 +269,6 @@ d3.json("data/spain-communities.geojson", function(error, collection) {
 				});
 			}
 		}
-		console.log(legend_data)
 		legend = d3.select("div#map1").append("svg")
 			.attr("class", "legend")
 			.attr("width", 100)
