@@ -86,7 +86,7 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 				.style("opacity", "0")
 				.style("display", "none");
 
-	d3.json("data/casos_comunidad.json", function(error, collection) {
+	d3.json("../data/casos_comunidad.json", function(error, collection) {
 			if (error) throw error;
 
 			/* Add a LatLng object to each item in the dataset */
@@ -139,7 +139,7 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 		});
 
 // mapdata from: https://ckhickey.cartodb.com/tables/afghanistan_provinces_geometry/public
-d3.json("data/spain-communities.geojson", function(error, collection) {
+d3.json("../data/spain-communities.geojson", function(error, collection) {
 	if (error) throw error;
 
 	var transform = d3.geo.transform({
