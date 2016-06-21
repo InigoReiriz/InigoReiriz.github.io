@@ -24,24 +24,6 @@ $(document).ready(function () {
     },
     plugins: [
       {
-        name: "central-click",
-        options: {
-          style: {
-            "font-size": "14px",
-            "font-style": "italic",
-            "font-family": "Source Sans Pro, sans-serif",
-            //"font-weight": "700",
-            "text-anchor": "middle",
-            "font-weight": "bold",
-            "fill": "black"
-          },
-          attr: {dy: "65px"},
-          centralClick: function() {
-            alert("Here is more details!!");
-          }
-        }
-      },
-      {
         name: "lines",
         options: {
           format: [

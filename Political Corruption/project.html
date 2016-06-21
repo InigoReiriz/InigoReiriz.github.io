@@ -60,65 +60,50 @@
       		</p>
       	</section>
 
-				<div style='font-size:16p; margin-left:235px;' </div>
-					<p> Tras la disolución de las Cortes y de convocatoria de elecciones generales en España por Real Decreto el pasado 3 de mayo, una cosa es clara, únicamente mediante la participación de todo el electorado en el ámbito nacional y el extranjero se podrá construir un futuro próspero el próximo 26 de Junio, bajo el consenso de todos españoles. </p>
-				</div>
-
-				<div style="text-align: center; font-size: 1em;">PP: <span id="PP">48</span></div>
-				<div style="text-align: center; font-size: 1em;">PSOE: <span id="PSOE">36</span></div>
-				<div style="text-align: center; font-size: 1em;">PSC: <span id="PSOE">4</span></div>
-				<div style="text-align: center; font-size: 1em;">PNV: <span id="PSOE">4</span></div>
-				<div style="text-align: center; font-size: 1em;">CiU: <span id="PSOE">3</span></div>
-
-				<script>
-				"use strict";
-				class AnimateNumber {
-					constructor(elementId, start, stop) {
-						if (stop == undefined) {
-							this.stop = {val:start};
-							this.start = {val:0};
-						} else {
-							this.start = {val:start};
-							this.stop = {val:stop};
-						}
-						this.target = $(elementId);
-						this.renderAnimation = this.renderAnimation.bind(this);
-						const monitor = scrollMonitor.create(document.querySelector(elementId));
-						monitor.enterViewport(this.renderAnimation);
-					}
-					renderAnimation() {
-						$(this.start).animate(this.stop, {
-							duration: 8000,
-							easing: 'easeInOutQuart',
-							step: (e) => {
-								this.target.text(Math.round(e));
-							}
-						});
-					}
-				}
-				document.addEventListener('DOMContentLoaded', new AnimateNumber('#PP', 48));
-				document.addEventListener('DOMContentLoaded', new AnimateNumber('#PSOE', 36));
-				document.addEventListener('DOMContentLoaded', new AnimateNumber('#PSC', 4));
-				document.addEventListener('DOMContentLoaded', new AnimateNumber('#PNV', 4));
-				document.addEventListener('DOMContentLoaded', new AnimateNumber('#CiU', 3));
-
-</script>
-
 			<section class="main-content">
+			  <div style='font-size:14px';
+						<p> Tras la disolución de las Cortes y de convocatoria de elecciones generales en España por
+						Real Decreto el pasado 3 de mayo, una cosa es clara, únicamente mediante la participación de
+						todo el electorado en el ámbito nacional y extranjero se podrá construir un futuro próspero
+						el próximo 26 de Junio, bajo el consenso de todos los españoles.</p>
+
+						<p> ¿A quién puedo votar? Esta pregunta depende intrínsecamente de las ideologías personales y
+						seguramente los medios de comunicación tradicionales no favorecen la labor de decisión. Además,
+					  teniendo en cuenta la cantidad de información disponible, ésta puede llegar a ser confusa y
+					 	herramientas para comparar los <a href="http://www.rtve.es/noticias/elecciones/generales/comparador-programas/">
+						diferentes programas electorales </a> o un <a href=" https://es.wikipedia.org/wiki/Anexo:Sondeos_de_intenci%C3%B3n_de_voto_para_las_elecciones_generales_de_Espa%C3%B1a_de_2016"
+						> análisis de intención de voto </a> valorando diversas fuentes
+						son más que necesarias para crear un criterio no sesgado.</p>
+
+						<p> Independientemente de las promesas, una cosa si es clara, las gestiones del pasado. La confianza
+					  depositada en muchos de los políticos fue traicionada mediante tramas de corrupción y desvío de
+					  fondos públicos, un robo directo a cada uno de los ciudadanos y una falta de respeto a cada uno
+						de los votantes dentro y fuera de la península, afectando a todo el país.</p>
+
+						<p> La gran cantidad de casos hace díficil seguir la pista a las tramas corruptas que se expanden por todo
+						el territorio nacional. A continuación mostramos un <b> mapa interactivo </b> que recopila los casos a nivel
+						autonómico y nacional con los correspondientes partidos políticos implicados. <b> Arrastre el ratón sobre los círculos de las Comunidades
+						Autónomas para desplegar los datos. </b> </p>
+				</div>
 				<!-- Visualization 1 -->
       		<div id="map1">
       			<script src="js/v1_map.js" type="text/javascript"></script>
       		</div>
 
 					<br> </br>
-					<div style='font-size:16px';
-						<p> Blah, blah, blah...</p>
+					<div style='font-size:14px';
+						<p> A continuación mostramos el <b> número de políticos imputados por corrupción por partidos </b>.</p>
 					</div>
 					<!-- Visualization 2 -->
 					<div id="vis2">
 						<div class="bubbleChart"/>
 							<script src="js/v2.js" type="text/javascript"></script>
 						</div>
+					</div>
+					<br> </br>
+					<div style='font-size:14px';
+						<p> El próximo 26 de Junio, recuerda que la mayor justicia para acabar con la lacra de la corrupción política
+						es tu razón y voto. No seas cómplice ni mires a otro lado, simplemente <b> VOTA </b> :)</p>
 					</div>
 
 					<br> </br>
