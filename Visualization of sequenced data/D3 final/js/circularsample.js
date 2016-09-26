@@ -33,23 +33,53 @@ if('undefined' !== typeof brush) {
 
 // Now some callbacks to make the interactive functionality work.
 
-// Attached to the onchange callback for the GC Plot checkbox,
-// call the plot to add/remove the GC Plot as needed
-function updateGC(cb) {
-    if(cb.checked) {
-	cTrack.showTrack("gcplot");
-    } else {
-	cTrack.hideTrack("gcplot");
-    }
-}
-
-// Attached to strand track checkbox, call the plot to
-// add/remove the inner stranded track
-function updateStrand(cb) {
+// Attached to ref track checkbox, call the plot to
+// add/remove the ref stranded track
+function updateRef(cb) {
     if(cb.checked) {
 	cTrack.showTrack("track1");
     } else {
 	cTrack.hideTrack("track1");
+    }
+}
+
+// Attached to ref track checkbox, call the plot to
+// add/remove the ref stranded track
+function updateCS(cb) {
+    if(cb.checked) {
+    cTrack.showTrack("track1");
+    } else {
+    cTrack.hideTrack("track1");
+    }
+}
+
+// Attached to ref track checkbox, call the plot to
+// add/remove the ref stranded track
+function updateUCS(cb) {
+    if(cb.checked) {
+    cTrack.showTrack("track1");
+    } else {
+    cTrack.hideTrack("track1");
+    }
+}
+
+// Attached to ref track checkbox, call the plot to
+// add/remove the ref stranded track
+function updateMaker1(cb) {
+    if(cb.checked) {
+    cTrack.showTrack("track1");
+    } else {
+    cTrack.hideTrack("track1");
+    }
+}
+
+// Attached to ref track checkbox, call the plot to
+// add/remove the ref stranded track
+function updateMarker2(cb) {
+    if(cb.checked) {
+    cTrack.showTrack("track1");
+    } else {
+    cTrack.hideTrack("track1");
     }
 }
 
@@ -63,24 +93,10 @@ function updateGaps(cb) {
     }
 }
 
-// Attached to the ADB glyph checkbox, call the plot to
-// add/remove only the ADB type of glyph
-function updateAdb(cb) {
-    if(cb.checked) {
-	cTrack.showGlyphTrackType("track5", "adb");
-    } else {
-	cTrack.hideGlyphTrackType("track5", "adb");
-    }
-}
-
 // Attached to the resize plot button, call the plot to
 // resize the plot to 650px diameter
 function resizePlot() {
     cTrack.resize(650);
-}
-
-function saveImage() {
-    cTrack.savePlot(4.0, "islandviewer.png", "tracks.css", 'png');
 }
 
 // Demo of the hover over timer, we had to

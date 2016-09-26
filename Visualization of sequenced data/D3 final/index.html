@@ -33,7 +33,6 @@
     <!-- Libraries needed for save feature -->
     <script type="text/javascript" src="js/libraries/rgbcolor.js"></script>
     <script type="text/javascript" src="js/libraries/canvg.js"></script>
-    <script type="text/javascript" src="js/libraries/FileSaver.js"></script>
 
     <!-- Sample data to be rendered -->
     <script type="text/javascript" src="data/datafake.simple.js"></script>
@@ -48,15 +47,17 @@
 
     <!-- Controls on the demo -->
     <div id="demo-controls">
-      <div class="control-item"><input type="checkbox" name="showGC" onchange="updateGC(this); return false" checked>Show GC plot</div>
 
-      <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateStrand(this); return false" checked>Show stranded track</div>
+      <div class="control-item"><input type="checkbox" name="showRef" onchange="updateRef(this); return false" checked>Show Ref</div>
 
-      <div class="control-item"><input type="checkbox" name="showvfdb" onchange="updateAdb(this); return false" checked>Show ADB glyph type</div>
+      <div class="control-item"><input type="checkbox" name="showCS" onchange="updateCS(this); return false" checked>Show CS</div>      
+      <div class="control-item"><input type="checkbox" name="showUCS" onchange="updateUCS(this); return false" checked>Show UCS</div>
+
+      <div class="control-item"><input type="checkbox" name="showMarker1" onchange="updateMarker1(this); return false" checked>Show Marker1</div>   
+
+      <div class="control-item"><input type="checkbox" name="showMarker2" onchange="updateMarker2(this); return false" checked>Show Marker2</div>      
 
       <div class="control-item"><input type="checkbox" name="showgaps" onchange="updateGaps(this); return false" checked>Show contig gap region type</div>
-
-      <div class="control-item"><button name="saveImage" onclick="saveImage(); return false">Save Image</button></div>
 
       <div class="control-item"><input type="button" onClick="resizePlot(); return false;" value="Resize plot diameter"></button></div>
 
