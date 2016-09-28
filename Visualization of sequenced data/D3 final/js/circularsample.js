@@ -33,49 +33,10 @@ if('undefined' !== typeof brush) {
 
 // Now some callbacks to make the interactive functionality work.
 
-// Attached to ref track checkbox, call the plot to
-// add/remove the ref stranded track
-function updateRef(cb) {
-    if(cb.checked) {
-	cTrack.showTrack("track1");
-    } else {
-	cTrack.hideTrack("track1");
-    }
-}
 
 // Attached to ref track checkbox, call the plot to
 // add/remove the ref stranded track
 function updateCS(cb) {
-    if(cb.checked) {
-    cTrack.showTrack("track1");
-    } else {
-    cTrack.hideTrack("track1");
-    }
-}
-
-// Attached to ref track checkbox, call the plot to
-// add/remove the ref stranded track
-function updateUCS(cb) {
-    if(cb.checked) {
-    cTrack.showTrack("track1");
-    } else {
-    cTrack.hideTrack("track1");
-    }
-}
-
-// Attached to ref track checkbox, call the plot to
-// add/remove the ref stranded track
-function updateMaker1(cb) {
-    if(cb.checked) {
-    cTrack.showTrack("track1");
-    } else {
-    cTrack.hideTrack("track1");
-    }
-}
-
-// Attached to ref track checkbox, call the plot to
-// add/remove the ref stranded track
-function updateMarker2(cb) {
     if(cb.checked) {
     cTrack.showTrack("track1");
     } else {
