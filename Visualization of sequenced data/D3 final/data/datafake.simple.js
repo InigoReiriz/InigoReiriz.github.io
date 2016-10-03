@@ -41,7 +41,7 @@ var tracks = [
 			      {id: 3, start: 2050000, end: 2051000, name: 'contig_gap3'},
 			      {id: 4, start: 3250000, end: 3251000, name: 'contig_gap4'},
 		     ]
-                  }
+          }
       ]
 
 
