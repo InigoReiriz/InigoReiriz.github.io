@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <title>GenomeD3Plot Circularplot Example</title>
+    <title>Circularplot of Sequenced data</title>
     <script src="js/libraries/d3.min.js"></script>
     <script src="js/libraries/d3-tip.js"></script>
     <style>
@@ -12,13 +12,11 @@
         font-size: 14px;
         font-family: "Helvetica Neue", Helvetica;
       }
-
       #circularchart {
         position: absolute;
         top: 0px;
         left: 125px;
       }
-
     </style>
 
     <link rel="stylesheet" type="text/css" href="css/track.css">
@@ -33,9 +31,8 @@
     <!-- Libraries needed for save feature -->
     <script type="text/javascript" src="js/libraries/rgbcolor.js"></script>
     <script type="text/javascript" src="js/libraries/canvg.js"></script>
-
     <!-- Sample data to be rendered -->
-    <script type="text/javascript" src="data/datafake.simple.js"></script>
+    <script type="text/javascript" src="data/contig.data.js"></script>
 
     <!-- Circular plot library -->
     <script type="text/javascript" src="js/libraries/circularplot.js"></script>
@@ -48,7 +45,8 @@
     <!-- Controls on the demo -->
     <div id="demo-controls">
 
-      <div class="control-item"><input type="checkbox" name="showCS" onchange="updateCS(this); return false" checked>Show CS</div>       
+      <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateStrand(this); return false" checked>Show stranded track</div>
+
       <div class="control-item"><input type="checkbox" name="showgaps" onchange="updateGaps(this); return false" checked>Show contig gap region type</div>
 
       <div class="control-item"><input type="button" onClick="resizePlot(); return false;" value="Resize plot diameter"></button></div>

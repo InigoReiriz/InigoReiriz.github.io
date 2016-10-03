@@ -7,8 +7,8 @@
 // double click and the initial chart size.
 var genomesize = 6264404;
 var circularlayout = {genomesize: genomesize,
-		      container: "#circularchart",
-		      dblclick: "doubleClick",
+              container: "#circularchart",
+              dblclick: "doubleClick",
                       w: 550, h: 550
         };
 
@@ -19,7 +19,7 @@ var circularlayout = {genomesize: genomesize,
 var cTrack = new circularTrack(circularlayout, tracks);
 
 // If we're showing both a circular and linear chart,
-// and have a linear brush, attach it (see combo plºot demo)
+// and have a linear brush, attach it (see combo plot demo)
 if('undefined' !== typeof linearTrack) {
     console.log("Attaching linear track");
     cTrack.attachBrush(linearTrack);
@@ -33,10 +33,9 @@ if('undefined' !== typeof brush) {
 
 // Now some callbacks to make the interactive functionality work.
 
-
-// Attached to ref track checkbox, call the plot to
-// add/remove the ref stranded track
-function updateCS(cb) {
+// Attached to strand track checkbox, call the plot to
+// add/remove the inner stranded track
+function updateStrand(cb) {
     if(cb.checked) {
     cTrack.showTrack("track1");
     } else {
@@ -48,9 +47,9 @@ function updateCS(cb) {
 // add/remove the contig gap squiggles
 function updateGaps(cb) {
     if(cb.checked) {
-	cTrack.showTrack("gapTrack");
+    cTrack.showTrack("gapTrack");
     } else {
-	cTrack.hideTrack("gapTrack");
+    cTrack.hideTrack("gapTrack");
     }
 }
 
@@ -89,8 +88,8 @@ function doubleClick(plotid, bp) {
     if('undefined' !== typeof linearTrack) {
         var halfBP = (cTrack.brushEndBP - cTrack.brushStartBP) /2;
 
-	var newStart = Math.max(0, (bp - halfBP));
-	var newEnd = Math.min(genomesize, (bp + halfBP));
+    var newStart = Math.max(0, (bp - halfBP));
+    var newEnd = Math.min(genomesize, (bp + halfBP));
 
         console.log("Moving zoom area to: " + newStart + ", " + newEnd);
         cTrack.moveBrushbyBP(newStart,
