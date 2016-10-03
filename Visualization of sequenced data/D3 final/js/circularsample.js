@@ -38,19 +38,19 @@ if('undefined' !== typeof brush) {
 // add/remove the inner stranded track
 function updateStrand(cb) {
     if(cb.checked) {
-    cTrack.showTrack("track1");
+    cTrack.showTrack("Contig");
     } else {
-    cTrack.hideTrack("track1");
+    cTrack.hideTrack("Contig");
     }
 }
 
 // Attached to the contig gap checkbox, call the plot to
 // add/remove the contig gap squiggles
 function updateGaps(cb) {
-    if(cb.checked) {
-    cTrack.showTrack("gapTrack");
+    if (cb.checked) {
+        cTrack.showTrack("gapTrack");
     } else {
-    cTrack.hideTrack("gapTrack");
+        cTrack.hideTrack("gapTrack");
     }
 }
 
