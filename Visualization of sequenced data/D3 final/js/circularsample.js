@@ -7,6 +7,7 @@
 // double click and the initial chart size.
 
 var genomesize = 6264404;
+//var genomesize = 500000;
 var circularlayout = {genomesize: genomesize,
               container: "#circularchart",
               dblclick: "doubleClick",

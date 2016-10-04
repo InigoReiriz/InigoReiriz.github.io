@@ -1718,8 +1718,11 @@ function calcInnerRadius(inner, outer, strand) {
 	return inner;
     } else if(strand == -1) {
 	return inner;
-    } else {
+    } else if(strand == -2){
 	return (inner+outer)/2;
+    }
+    else if(strand == -3){
+    return (inner+outer)/1.5;
     }
 }
 
@@ -1731,9 +1734,12 @@ function calcOuterRadius (inner, outer, strand) {
     if('undefined' == typeof strand) {
 	return outer;
     } else if(strand == -1) {
-	return (inner+outer)/2;
-    } else {
+	return (inner+outer)/2 - 10;
+    } else if(strand == -2){
 	return outer;
+    }
+    else if(strand == -3){
+    return (inner+outer)/1.5 + 20;
     }
 }
 
