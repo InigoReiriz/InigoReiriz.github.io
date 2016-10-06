@@ -1,3 +1,4 @@
+
 var circularTrackDefaults = {
     radius: 5,
     w: 600,
@@ -58,12 +59,23 @@ function circularTrack(layout,tracks) {
 	.append("svg")	
 	.attr("id", function() { return layout.container.slice(1) + "_svg"; })
 	.attr("width", this.layout.w+this.layout.ExtraWidthX)
-	.attr("height", this.layout.h+this.layout.ExtraWidthY); 
-   
+	.attr("height", this.layout.h+this.layout.ExtraWidthY)
+    .call(d3.behavior.zoom().on("zoom", zoomed))
+    .append("g");
+
+    var con = this
+
+    function zoomed () {
+        con.container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+
+      };
+
+    console.log(this.container)
+
     this.g = this.container
-	.append("g")
-	.attr("id", function() { return layout.container.slice(1) + "_g"; })
-	.attr("transform", "translate(" + this.layout.TranslateX + "," + this.layout.TranslateY + ")");
+    .append("g")
+    .attr("id", function() { return layout.container.slice(1) + "_g"; })
+    .attr("transform", "translate(" + this.layout.TranslateX + "," + this.layout.TranslateY + ")");
 
     // Add the double click functionality, but we needed to define g first
     this.container.on("dblclick", function(d,i) {
