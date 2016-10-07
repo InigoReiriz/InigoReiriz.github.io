@@ -37,11 +37,27 @@ if('undefined' !== typeof brush) {
 
 // Attached to strand track checkbox, call the plot to
 // add/remove the inner stranded track
-function updateStrand(cb) {
+function updateReference(cb) {
     if(cb.checked) {
-    cTrack.showTrack("Contig");
+    cTrack.showTrack("reference");
     } else {
-    cTrack.hideTrack("Contig");
+    cTrack.hideTrack("reference");
+    }
+}
+
+function updateCS(cb) {
+    if(cb.checked) {
+    cTrack.showTrack("core_sequence");
+    } else {
+    cTrack.hideTrack("core_sequence");
+    }
+}
+
+function updateUCS(cb) {
+    if(cb.checked) {
+    cTrack.showTrack("unique_core_sequence");
+    } else {
+    cTrack.hideTrack("unique_core_sequence");
     }
 }
 
