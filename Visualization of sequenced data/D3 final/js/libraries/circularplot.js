@@ -162,9 +162,13 @@ function circularTrack(layout,tracks) {
 
     this.tip = d3.tip()
 	.attr('class', 'd3-tip')
+    .style("background",'#BCC5F7')
 	.offset([-10, 0])
 	.html(function(d) {
-		return "<strong>Name:</strong> <span style='color:red'>" + d.name + "</span>";
+		return "<span style='color: #000080'> <strong>Contig:</strong> <span style='color: #A52A2A'>" + d.name + "</span>" + 
+        "<br> -----------------------" +
+        "<br> start: <span style='color:#A52A2A'>" + d.start + "</span>" +
+        "<br> end: <span style='color:#A52A2A'>" + d.end + "</span>" ;
 	    });
 
     this.container.call(this.tip);
