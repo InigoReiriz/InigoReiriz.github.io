@@ -153,6 +153,11 @@
     fill-opacity: .7;
 }
 
+.unique_core_sequence_neg {
+    fill: #DC143C;
+    fill-opacity: .7;
+}
+
 .unique_core_sequence:hover {
     fill: blue;
     fill-opacity: .9;
