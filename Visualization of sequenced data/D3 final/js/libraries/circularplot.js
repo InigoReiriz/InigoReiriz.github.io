@@ -70,8 +70,6 @@ function circularTrack(layout,tracks) {
 
       };
 
-    console.log(this.container)
-
     this.g = this.container
     .append("g")
     .attr("id", function() { return layout.container.slice(1) + "_g"; })
@@ -167,9 +165,13 @@ function circularTrack(layout,tracks) {
 	.html(function(d) {
 		return "<span style='color: #000080'> <strong>Contig:</strong> <span style='color: #A52A2A'>" + d.name + "</span>" + 
         "<br> -----------------------" +
-        "<br> start: <span style='color:#A52A2A'>" + d.start + "</span>" +
-        "<br> end: <span style='color:#A52A2A'>" + d.end + "</span>" ;
+        "<br> Length: <span style='color:#A52A2A'>" + (d.end - d.start) + "</span>" ;
 	    });
+
+    //if (this.tracks[0].trackName == 'reference'){
+    //    console.log(this.tracks[0].trackName)
+    //    this.container.call(this.tip);
+    //}
 
     this.container.call(this.tip);
 
