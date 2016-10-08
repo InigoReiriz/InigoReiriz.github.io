@@ -165,17 +165,19 @@ function circularTrack(layout,tracks) {
 	.html(function(d) {
         if (d.strand == -1){
 
-            return "<span style='color: #000080'> <strong>Contig:</strong> <span style='color: #A52A2A'>" + d.name + "</span>" + 
+            return "<span style='color: #000080'> <strong>Contig </strong> <span style='color: #A52A2A'>" + d.name + "</span>" + 
             "<br> -----------------------" +
             "<br> Length: <span style='color:#A52A2A'>" + (d.end - d.start) + "</span>" ;
         }
         else if (d.strand == -2){
-            return "<span style='color: #000080'> <strong>CS:</strong> <span style='color: #A52A2A'>" + d.name + "</span>" + 
+            return "<span style='color: #000080'> <strong>CS: </strong> <span style='color: #A52A2A'>" + d.name + "</span>" +
+           " <br> <span style='color: #000080'> <strong> Contig:</strong> <span style='color: #A52A2A'>" + d.contig + "</span>" + 
             "<br> -----------------------" +
             "<br> Length: <span style='color:#A52A2A'>" + (d.end - d.start) + "</span>" ;
         }
         else{
             return "<span style='color: #000080'> <strong>UCS:</strong> <span style='color: #A52A2A'>" + d.name + "</span>" + 
+            "<br> <span style='color: #000080'> <strong>Contig:</strong> <span style='color: #A52A2A'>" + d.contig + "</span>" + 
             "<br> -----------------------" +
             "<br> Length: <span style='color:#A52A2A'>" + (d.end - d.start) + "</span>" ;
         }
