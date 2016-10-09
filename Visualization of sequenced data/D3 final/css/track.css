@@ -114,6 +114,61 @@
     font: 12px arial;
 }
 
+/*###############################################################3*/
+
+/* Definitions for first stranded track, colour, stroke */
+.contig_pos {
+    fill: darksalmon;
+    stroke: #d1876d;
+    stroke-opacity: 0.8;
+    stroke-width: 1;  
+}
+
+.contig_neg {
+    fill: #DC143C;
+    fill-opacity: 0;
+    /*stroke-width: 1;
+    stroke: #4c602a;*/
+}
+
+/* In a linear track if an intergenic
+   region is defined, give it a colour */
+.contig_none {
+    fill: #cccccc;
+    fill-opacity: .7;
+    stroke-width: 1;
+}
+
+/* And we want to show the user as they hover
+   over a track, change the colour */
+.contig_pos:hover {
+    fill: red;
+    stroke-width: 1;
+    stroke: 1;
+}
+
+.contig_neg:hover {
+    fill: red;
+    fill-opacity: .2;
+    stroke-width: 1;
+    stroke: red;
+}
+
+/* In a linear track, if there are regulatory
+   elements such as transcription factors and
+   terminators, give them a colour for the stroke */
+.reference_arrow_pos, .reference_arrow_neg {
+    stroke-width: 1;
+    stroke: black;
+}
+
+/* Labels on the linear track */
+.reference_text {
+    fill: white;
+    font-weight: bold;
+    font: 12px arial;
+}
+
 /* Track 2 is also a stranded track, give it
    a different set of colours */
 .core_sequence_pos {

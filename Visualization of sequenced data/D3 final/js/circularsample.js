@@ -45,6 +45,14 @@ function updateReference(cb) {
     }
 }
 
+function updateContig(cb) {
+    if(cb.checked) {
+    cTrack.showTrack("contig");
+    } else {
+    cTrack.hideTrack("contig");
+    }
+}
+
 function updateCS(cb) {
     if(cb.checked) {
     cTrack.showTrack("core_sequence");
@@ -58,16 +66,6 @@ function updateUCS(cb) {
     cTrack.showTrack("unique_core_sequence");
     } else {
     cTrack.hideTrack("unique_core_sequence");
-    }
-}
-
-// Attached to the contig gap checkbox, call the plot to
-// add/remove the contig gap squiggles
-function updateGaps(cb) {
-    if (cb.checked) {
-        cTrack.showTrack("gapTrack");
-    } else {
-        cTrack.hideTrack("gapTrack");
     }
 }
 
