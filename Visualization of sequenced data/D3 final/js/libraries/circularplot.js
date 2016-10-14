@@ -10,7 +10,7 @@ var circularTrackDefaults = {
     ExtraWidthX: 100,
     ExtraWidthY: 100,
     radians: 2 * Math.PI,
-    spacing: 100000,
+    spacing: 200000,
     legend_spacing: 5,
     min_radians: .02 * Math.PI,
     dragresize: true,
@@ -164,7 +164,7 @@ function circularTrack(layout,tracks) {
 	.offset([-10, 0])
 	.html(function(d) {
         console.log(d)
-        return "<span style='color: #000080'> <strong>Contig </strong> <span style='color: #A52A2A'>" + d.name + "</span>" + 
+        return "<span style='color: #000080'> <strong>Contig name: </strong> <span style='color: #A52A2A'>" + d.name + "</span>" + 
         "<br> Length: <span style='color:#A52A2A'>" + (d.end - d.start) + "</span>" ;
     	});
 

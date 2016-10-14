@@ -171,7 +171,7 @@
 
 /* Track 2 is also a stranded track, give it
    a different set of colours */
-.core_sequence_pos {
+.cs_pos {
     fill: #000099;
     fill-opacity: .7;
 }
@@ -179,23 +179,23 @@
 /* When a linear track is zoomed to the point 
    it's text is visible an extra class is added
    to the element we can hook in to */
-.core_sequence_pos_zoomed {
+.cs_zoomed {
     stroke-width: 1px;
     stroke: #647381;
 }
 
-.core_sequence_neg {
+.cs_neg {
     fill: #006600;
     fill-opacity: .7;
 }
 
-.core_sequence_neg_zoomed {
+.cs_zoomed {
     stroke-width: 1px;
     stroke: #007300;
     stroke-opacity: 0.7;
 }
 
-.core_sequence_text {
+.cs_text {
     fill: white;
     font-weight: bold;
     font: 12px arial;
@@ -203,22 +203,22 @@
 
 /* Track 3 is a non-stranded track, so no _pos
    and _neg modifiers on the classes */
-.unique_core_sequence {
+.ucs {
     fill: #3399FF;
     fill-opacity: .7;
 }
 
-.unique_core_sequence_neg {
+.ucs_neg {
     fill: #DC143C;
     fill-opacity: .7;
 }
 
-.unique_core_sequence:hover {
+.ucs:hover {
     fill: blue;
     fill-opacity: .9;
 }
 
-.unique_core_sequence_text {
+.ucs_text {
     fill: white;
     font-weight: bold;
     font: 12px arial;

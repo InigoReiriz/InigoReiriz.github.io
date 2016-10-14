@@ -55,17 +55,17 @@ function updateContig(cb) {
 
 function updateCS(cb) {
     if(cb.checked) {
-    cTrack.showTrack("core_sequence");
+    cTrack.showTrack("cs");
     } else {
-    cTrack.hideTrack("core_sequence");
+    cTrack.hideTrack("cs");
     }
 }
 
 function updateUCS(cb) {
     if(cb.checked) {
-    cTrack.showTrack("unique_core_sequence");
+    cTrack.showTrack("ucs");
     } else {
-    cTrack.hideTrack("unique_core_sequence");
+    cTrack.hideTrack("ucs");
     }
 }
 
