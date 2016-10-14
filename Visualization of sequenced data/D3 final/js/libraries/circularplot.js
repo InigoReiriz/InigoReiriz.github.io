@@ -163,7 +163,7 @@ function circularTrack(layout,tracks) {
     .style("background",'#BCC5F7')
 	.offset([-10, 0])
 	.html(function(d) {
-        console.log(d)
+
         return "<span style='color: #000080'> <strong>Contig name: </strong> <span style='color: #A52A2A'>" + d.name + "</span>" + 
         "<br> Length: <span style='color:#A52A2A'>" + (d.end - d.start) + "</span>" ;
     	});

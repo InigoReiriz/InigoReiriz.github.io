@@ -32,15 +32,14 @@
     <script type="text/javascript" src="js/libraries/rgbcolor.js"></script>
     <script type="text/javascript" src="js/libraries/canvg.js"></script>
     <!-- Sample data to be rendered -->
-    <script type="text/javascript" src="data/contig.data.js"></script>
+    <script type="text/javascript" src="data/contig.data.json"></script>
 
     <!-- Circular plot library -->
     <script type="text/javascript" src="js/libraries/circularplot.js"></script>
 
     <!-- Initialization code to initialize the plot, this is what you would write
          and place in your application. -->
-    <script type="text/javascript" src="js/circularsample.js"></script>
- 
+    <script type="text/javascript" src="js/circularsample.js"></script> 
 
     <!-- Controls on the demo -->
     <div id="demo-controls">
@@ -48,6 +47,8 @@
       <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateReference(this); return false" checked> <span style='color: #FFCC00'> Show Ref</div>
 
       <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateCS(this); return false" checked> <span style='color: #006600'>Show CS</div>
+
+      <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateUCS(this); return false" checked> <span style='color: #DC143C'>Show UCS</div>
 
     </div>
 

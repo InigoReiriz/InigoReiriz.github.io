@@ -6,6 +6,11 @@
 // SVG object in, what function to call during a
 // double click and the initial chart size.
 
+var request = new XMLHttpRequest();
+request.open("GET", "data/contig.data.json", false); //this is executed from the .html file so the path changes..
+request.send(null)
+var tracks = JSON.parse(request.responseText);
+
 var genomesize = 6264404;
 //var genomesize = 500000;
 var circularlayout = {genomesize: genomesize,
