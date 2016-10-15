@@ -93,34 +93,36 @@ for num_lane in range(len(lanes)):
         
     contig = {}
 
-    contig['trackName'] = lane_names[num_lane]
-    contig['trackType'] = 'stranded'
-    contig['visible'] = True
-    contig['inner_radius'] = 120
-    contig['outer_radius'] = 160
-    contig['trackFeatures'] = 'complex'
-    contig['featureThreshold'] = 7000000
-    contig['mouseclick'] = 'islandPopup'
-    contig['mouseover_callback'] = 'islandPopup'
-    contig['mouseout_callback'] = 'islandPopupClear'
-    contig['linear_mouseclick'] = 'linearPopup'
-    contig['showLabels'] = True
-    contig['showTooltip'] = True
-    contig['linear_mouseclick'] = 'linearClick'
-    contig['items'] = []
+    if num_lane == 0:
 
-    contig['items'] = lanes[num_lane]
+        contig['trackName'] = lane_names[num_lane]
+        contig['trackType'] = 'stranded'
+        contig['visible'] = True
+        contig['inner_radius'] = 120
+        contig['outer_radius'] = 160
+        contig['trackFeatures'] = 'complex'
+        contig['featureThreshold'] = 7000000
+        contig['mouseclick'] = 'islandPopup'
+        contig['mouseover_callback'] = 'islandPopup'
+        contig['mouseout_callback'] = 'islandPopupClear'
+        contig['linear_mouseclick'] = 'linearPopup'
+        contig['showLabels'] = True
+        contig['showTooltip'] = True
+        contig['linear_mouseclick'] = 'linearClick'
+        contig['items'] = []
 
-    contigs.append(contig.copy())
+        contig['items'] = lanes[num_lane]
+
+        contigs.append(contig.copy())
     
 ## add another reference
-contig['trackName'] = 'contig'
-contig['inner_radius'] = 30
-contig['outer_radius'] = 480
+#contig['trackName'] = 'contig'
+#contig['inner_radius'] = 30
+#contig['outer_radius'] = 480
 
-contig['items'] = parsed_reference
+#contig['items'] = parsed_reference
 
-contigs.append(contig.copy())
+#contigs.append(contig.copy())
 
 
 # In[6]:
