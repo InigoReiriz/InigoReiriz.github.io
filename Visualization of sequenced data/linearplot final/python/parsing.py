@@ -30,6 +30,7 @@ def parse_ref():
     
     for num_contig in range(len(data['data'])):
         
+        ref['id'] = num_contig
         ref['name'] = data['data'][num_contig]['attributes']['name']
         ref['strand'] = -1
         

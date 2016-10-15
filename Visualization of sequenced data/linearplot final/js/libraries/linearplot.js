@@ -1,3 +1,9 @@
+
+var request = new XMLHttpRequest();
+request.open("GET", "data/contig.data.json", false); //this is executed from the .html file so the path changes..
+request.send(null)
+var tracks = JSON.parse(request.responseText);
+
 var linearTrackDefaults = {
     width: 940,
     height: 500,
@@ -145,6 +151,7 @@ function genomeTrack(layout,tracks) {
 	.attr('class', 'd3-tip')
 	.offset([-10, 0])
 	.html(function(d) {
+		console.log(d)
 		return "<strong>Name:</strong> <span style='color:red'>" + d.name + "</span>";
 	    });
     

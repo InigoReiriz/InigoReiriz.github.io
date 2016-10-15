@@ -62,14 +62,14 @@
 }
 
 /* Definitions for first stranded track, colour, stroke */
-.track1_pos {
+.reference_pos {
     fill: darksalmon;
     stroke: #d1876d;
     stroke-opacity: 0.8;
     stroke-width: 1;	
 }
 
-.track1_neg {
+.reference_neg {
     fill: #FFCC00;
     fill-opacity: .7;
     /*stroke-width: 1;
@@ -78,7 +78,7 @@
 
 /* In a linear track if an intergenic
    region is defined, give it a colour */
-.track1_none {
+.reference_none {
     fill: #cccccc;
     fill-opacity: .7;
     stroke-width: 1;
@@ -86,13 +86,13 @@
 
 /* And we want to show the user as they hover
    over a track, change the colour */
-.track1_pos:hover {
+.reference_pos:hover {
     fill: red;
     stroke-width: 1;
     stroke: 1;
 }
 
-.track1_neg:hover {
+.reference_neg:hover {
     fill: red;
     fill-opacity: .9;
     stroke-width: 1;
@@ -102,13 +102,13 @@
 /* In a linear track, if there are regulatory
    elements such as transcription factors and
    terminators, give them a colour for the stroke */
-.track1_arrow_pos, .track1_arrow_neg, .track3_arrow {
+.reference_arrow_pos, .reference_arrow_neg, .reference_arrow {
     stroke-width: 1;
     stroke: black;
 }
 
 /* Labels on the linear track */
-.track1_text {
+.reference_text {
     fill: white;
     font-weight: bold;
     font: 12px arial;
