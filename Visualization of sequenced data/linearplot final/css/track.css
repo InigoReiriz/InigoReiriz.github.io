@@ -14,23 +14,23 @@
 
 /* Text on the demo */
 .mini text {
-    font: 9px sans-serif;	
+    font: 9px sans-serif; 
 }
 
 .main text {
-    font: 12px sans-serif;	
+    font: 12px sans-serif;  
 }
 
 /* Definitions for the plot resize dragger, and
    resizing shadow */
 .dragbar-line {
-    stroke-width: 1;	
+    stroke-width: 1;  
     stroke: lightgrey;
     pointer-events: inherit;
 }
 
 .dragbar-shadow {
-    stroke-width: 1;	
+    stroke-width: 1;  
     stroke: lightgrey;
     fill: transparent;
 }
@@ -66,7 +66,7 @@
     fill: darksalmon;
     stroke: #d1876d;
     stroke-opacity: 0.8;
-    stroke-width: 1;	
+    stroke-width: 1;  
 }
 
 .reference_neg {
@@ -102,7 +102,62 @@
 /* In a linear track, if there are regulatory
    elements such as transcription factors and
    terminators, give them a colour for the stroke */
-.reference_arrow_pos, .reference_arrow_neg, .reference_arrow {
+.reference_arrow_pos, .reference_arrow_neg {
+    stroke-width: 1;
+    stroke: black;
+}
+
+/* Labels on the linear track */
+.reference_text {
+    fill: white;
+    font-weight: bold;
+    font: 12px arial;
+}
+
+/*###############################################################3*/
+
+/* Definitions for first stranded track, colour, stroke */
+.contig_pos {
+    fill: darksalmon;
+    stroke: #d1876d;
+    stroke-opacity: 0.8;
+    stroke-width: 1;  
+}
+
+.contig_neg {
+    fill: #DC143C;
+    fill-opacity: 0;
+    /*stroke-width: 1;
+    stroke: #4c602a;*/
+}
+
+/* In a linear track if an intergenic
+   region is defined, give it a colour */
+.contig_none {
+    fill: #cccccc;
+    fill-opacity: .7;
+    stroke-width: 1;
+}
+
+/* And we want to show the user as they hover
+   over a track, change the colour */
+.contig_pos:hover {
+    fill: red;
+    stroke-width: 1;
+    stroke: 1;
+}
+
+.contig_neg:hover {
+    fill: red;
+    fill-opacity: .2;
+    stroke-width: 1;
+    stroke: red;
+}
+
+/* In a linear track, if there are regulatory
+   elements such as transcription factors and
+   terminators, give them a colour for the stroke */
+.reference_arrow_pos, .reference_arrow_neg {
     stroke-width: 1;
     stroke: black;
 }
@@ -116,31 +171,37 @@
 
 /* Track 2 is also a stranded track, give it
    a different set of colours */
-.track2_pos {
+.cs_pos {
     fill: #000099;
     fill-opacity: .7;
+}
+
+.cs_none {
+    fill: #006600;
+    fill-opacity: .7;
+    stroke-width: 1;
 }
 
 /* When a linear track is zoomed to the point 
    it's text is visible an extra class is added
    to the element we can hook in to */
-.track2_pos_zoomed {
+.cs_zoomed {
     stroke-width: 1px;
     stroke: #647381;
 }
 
-.track2_neg {
+.cs_neg {
     fill: #006600;
     fill-opacity: .7;
 }
 
-.track2_neg_zoomed {
+.cs_zoomed {
     stroke-width: 1px;
     stroke: #007300;
     stroke-opacity: 0.7;
 }
 
-.track2_text {
+.cs_text {
     fill: white;
     font-weight: bold;
     font: 12px arial;
@@ -148,17 +209,22 @@
 
 /* Track 3 is a non-stranded track, so no _pos
    and _neg modifiers on the classes */
-.track3 {
+.ucs {
     fill: #3399FF;
     fill-opacity: .7;
 }
 
-.track3:hover {
+.ucs_neg {
+    fill: #DC143C;
+    fill-opacity: .7;
+}
+
+.ucs:hover {
     fill: blue;
     fill-opacity: .9;
 }
 
-.track3_text {
+.ucs_text {
     fill: white;
     font-weight: bold;
     font: 12px arial;
@@ -180,12 +246,6 @@
 }
 
 /* Give a colour to the glyph track's stroke */
-.linearplot.gapTrack {
-    stroke: grey;
-    fill: lightgrey;
-    opacity: 0.5;
-}
-
 .gapTrack {
     stroke: grey;
 }
@@ -231,7 +291,7 @@
 /* If we need to set an element to hidden, give
    ourselves a class */
 .linear_hidden {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 /* For regulatory elements in a linear plot,
