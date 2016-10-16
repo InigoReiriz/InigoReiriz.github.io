@@ -259,7 +259,9 @@ function genomeTrack(layout,tracks) {
 	    if('undefined' !== typeof this.tracks[i].linear_skipInit && this.tracks[i].linear_skipInit) {
 		break;
 	    }
-	    this.displayStranded(this.tracks[i], i);
+	    if (this.tracks[i].trackName != "contig"){
+	    	this.displayStranded(this.tracks[i], i);
+	    }
 	    break;
 	case "track":
 	    this.itemRects[i] = this.main.append("g")
@@ -1066,7 +1068,9 @@ genomeTrack.prototype.redraw = function() {
 	    this.displayGapTrack(this.tracks[i], i);
             break;
 	case "stranded":
-	    this.displayStranded(this.tracks[i], i);
+		if (this.tracks[i].trackName != "contig"){
+	    	this.displayStranded(this.tracks[i], i);
+	    }
 	    break;
 	case "track":
 	    this.displayTrack(this.tracks[i], i);
