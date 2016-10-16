@@ -151,7 +151,6 @@ function genomeTrack(layout,tracks) {
 	.attr('class', 'd3-tip')
 	.offset([-10, 0])
 	.html(function(d) {
-		console.log(d)
 		return "<strong>Name:</strong> <span style='color:red'>" + d.name + "</span>";
 	    });
     
