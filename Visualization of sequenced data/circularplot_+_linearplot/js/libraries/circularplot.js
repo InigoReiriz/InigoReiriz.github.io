@@ -60,16 +60,18 @@ function circularTrack(layout,tracks) {
 	.attr("id", function() { return layout.container.slice(1) + "_svg"; })
 	.attr("width", this.layout.w+this.layout.ExtraWidthX)
 	.attr("height", this.layout.h+this.layout.ExtraWidthY)
-    .call(d3.behavior.zoom().on("zoom", zoomed))
+    //.call(d3.behavior.zoom().on("zoom", zoomed))
     .append("g");
 
+    /*
     var con = this
 
     function zoomed () {
         con.container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 
       };
-
+    */
+    
     this.g = this.container
     .append("g")
     .attr("id", function() { return layout.container.slice(1) + "_g"; })
