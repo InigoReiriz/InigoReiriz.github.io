@@ -40,6 +40,18 @@ if('undefined' !== typeof brush) {
 
 // Now some callbacks to make the interactive functionality work.
 
+// Now some callbacks to make the interactive functionality work.
+
+// Attached to the onchange callback for the GC Plot checkbox,
+// call the plot to add/remove the GC Plot as needed
+function updateGC(cb) {
+    if(cb.checked) {
+    cTrack.showTrack("gcplot");
+    } else {
+    cTrack.hideTrack("gcplot");
+    }
+}
+
 // Attached to strand track checkbox, call the plot to
 // add/remove the inner stranded track
 function updateReference(cb) {

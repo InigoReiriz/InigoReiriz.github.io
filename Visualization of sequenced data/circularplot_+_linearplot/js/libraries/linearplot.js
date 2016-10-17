@@ -781,7 +781,13 @@ genomeTrack.prototype.displayPlotTrack = function(track, i) {
     var endItem = Math.min(parseInt(visEnd / track.bp_per_element), track.items.length);
     var offset = ((startItem+1) * track.bp_per_element) - visStart;
 
+    console.log(track.items.length)
+    console.log(startItem)
+    console.log(endItem)
+    console.log(offset)
+
     var items = track.items.filter(function(d, i) { return i >= startItem && i <= endItem } );
+    console.log(items)
 
     track.plotScale = d3.scale.linear()
 	.domain([track.plot_min, track.plot_max])

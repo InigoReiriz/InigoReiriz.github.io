@@ -71,7 +71,6 @@ function circularTrack(layout,tracks) {
 
       };
     */
-    
     this.g = this.container
     .append("g")
     .attr("id", function() { return layout.container.slice(1) + "_g"; })

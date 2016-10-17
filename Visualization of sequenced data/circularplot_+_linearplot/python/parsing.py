@@ -4,6 +4,7 @@
 # In[1]:
 
 import json
+import numpy as np
 
 with open('../data/results.json') as f: 
     data = json.load(f)
@@ -131,6 +132,25 @@ for num_lane in range(len(lanes)):
     contig['items'] = lanes[num_lane]
 
     contigs.append(contig.copy())
+
+    break
+
+
+depth = {}
+depth['trackName'] = "gcplot"
+depth['trackType'] = "plot"
+depth['visible'] = "true"
+depth["plot_min"] =  np.min(data['data'][7]['lanes']['depth'])
+depth["plot_max"] =  np.max(data['data'][7]['lanes']['depth'])
+depth["plot_mean"] = np.mean(data['data'][7]['lanes']['depth']) 
+depth["bp_per_element"] = 10000
+depth["plot_width"] = 75
+depth["plot_radius"] = 130
+depth["linear_plot_width"] = 100
+depth["linear_plot_height"] = 120
+depth["items"] = data['data'][7]['lanes']['depth']
+
+contigs.append(depth.copy())
 
     
 ## add another reference
