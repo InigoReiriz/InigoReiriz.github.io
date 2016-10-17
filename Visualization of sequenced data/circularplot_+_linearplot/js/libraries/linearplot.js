@@ -777,24 +777,22 @@ genomeTrack.prototype.displayPlotTrack = function(track, i) {
 	return;
     }
 
+    
     var startItem = parseInt(visStart / track.bp_per_element);
     var endItem = Math.min(parseInt(visEnd / track.bp_per_element), track.items.length);
     var offset = ((startItem+1) * track.bp_per_element) - visStart;
 
-    console.log(track.items.length)
-    console.log(startItem)
-    console.log(endItem)
-    console.log(offset)
-
     var items = track.items.filter(function(d, i) { return i >= startItem && i <= endItem } );
-    console.log(items)
 
     track.plotScale = d3.scale.linear()
 	.domain([track.plot_min, track.plot_max])
 	.range([track.linear_plot_height+(track.linear_plot_width/2), track.linear_plot_height-(track.linear_plot_width/2)]);
 
     var lineFunction = d3.svg.line()
-	.x(function(d, i) { return x1((i*track.bp_per_element)); } )
+	.x(function(d, i) { 
+		//console.log(i*track.bp_per_element)
+		return x1(((i+track.start)*track.bp_per_element)); 
+	} )
 	.y(function(d, i) { return track.plotScale(d); } )
 	.interpolate("linear");
 
