@@ -21,24 +21,6 @@ for i in range(len(data['data'])):
     
 gap_bet_contigs = (genomesize - tot_len) / len(data['data'])
 
-
-##################################################################
-
-for i in range(len(data['data'])):
-
-    if 'confidence' in data['data'][i]['lanes'].keys():
-
-        print "contig: %s" % data['data'][i]['attributes']['name']
-
-        print data['data'][i]['attributes']['length']
-        print len(data['data'][i]['lanes']['depth'])
-        print len(data['data'][i]['lanes']['confidence'])
-
-        print "\n"
-
-
-###################################################################
-
 # In[3]:
 
 def parse_ref():
@@ -135,24 +117,27 @@ for num_lane in range(len(lanes)):
 
     break
 
-
 depth = {}
-depth['trackName'] = "gcplot"
-depth['trackType'] = "plot"
-depth['visible'] = "true"
-depth["plot_min"] =  np.min(data['data'][7]['lanes']['depth'])
-depth["plot_max"] =  np.max(data['data'][7]['lanes']['depth'])
-depth["plot_mean"] = np.mean(data['data'][7]['lanes']['depth']) 
-depth["start"] = 1444513 
-depth["bp_per_element"] = 1
-depth["plot_width"] = 0
-depth["plot_radius"] = 0
-depth["linear_plot_width"] = 100
-depth["linear_plot_height"] = 150
-depth["items"] = data['data'][7]['lanes']['depth']
 
-contigs.append(depth.copy())
+for i in range(len(data['data'])):
 
+    if 'depth' in data['data'][i]['lanes'].keys():
+
+        depth['trackName'] = "gcplot"
+        depth['trackType'] = "plot"
+        depth['visible'] = "true"
+        depth["plot_min"] =  np.min(data['data'][i]['lanes']['depth'])
+        depth["plot_max"] =  np.max(data['data'][i]['lanes']['depth'])
+        depth["plot_mean"] = np.mean(data['data'][i]['lanes']['depth']) 
+        depth["start"] = contigs[0]['items'][i]['start']
+        depth["bp_per_element"] = 1
+        depth["plot_width"] = 0
+        depth["plot_radius"] = 0
+        depth["linear_plot_width"] = 100
+        depth["linear_plot_height"] = 150
+        depth["items"] = data['data'][i]['lanes']['depth']
+
+        contigs.append(depth.copy())
     
 ## add another reference
 contig['trackName'] = 'contig'
