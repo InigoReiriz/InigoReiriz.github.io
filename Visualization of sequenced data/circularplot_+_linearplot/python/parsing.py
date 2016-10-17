@@ -143,11 +143,11 @@ depth['visible'] = "true"
 depth["plot_min"] =  np.min(data['data'][7]['lanes']['depth'])
 depth["plot_max"] =  np.max(data['data'][7]['lanes']['depth'])
 depth["plot_mean"] = np.mean(data['data'][7]['lanes']['depth']) 
-depth["bp_per_element"] = 10000
+depth["bp_per_element"] = 500
 depth["plot_width"] = 75
-depth["plot_radius"] = 130
+depth["plot_radius"] = 230
 depth["linear_plot_width"] = 100
-depth["linear_plot_height"] = 120
+depth["linear_plot_height"] = 150
 depth["items"] = data['data'][7]['lanes']['depth']
 
 contigs.append(depth.copy())

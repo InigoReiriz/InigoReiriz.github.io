@@ -1329,10 +1329,10 @@
       "plot_mean": 0.28546712802768165, 
       "trackName": "gcplot", 
       "visible": "true", 
-      "plot_radius": 130, 
+      "plot_radius": 230, 
       "plot_width": 75, 
       "linear_plot_width": 100, 
-      "bp_per_element": 10000, 
+      "bp_per_element": 500, 
       "plot_max": 20, 
       "plot_min": 0, 
       "items": [
@@ -3650,7 +3650,7 @@
          0
       ], 
       "trackType": "plot", 
-      "linear_plot_height": 120
+      "linear_plot_height": 150
    }, 
    {
       "inner_radius": 30, 
