@@ -99,7 +99,7 @@ for num_lane in range(len(lanes)):
     contig['trackType'] = 'stranded'
     contig['visible'] = True
     contig['inner_radius'] = 120
-    contig['outer_radius'] = 160
+    contig['outer_radius'] = 180
     contig['trackFeatures'] = 'complex'
     contig['featureThreshold'] = 7000000
     contig['mouseclick'] = 'islandPopup'
@@ -114,8 +114,6 @@ for num_lane in range(len(lanes)):
     contig['items'] = lanes[num_lane]
 
     contigs.append(contig.copy())
-
-    break
 
 depth = {}
 
@@ -147,7 +145,6 @@ contig['outer_radius'] = 480
 contig['items'] = parsed_reference
 
 contigs.append(contig.copy())
-
 
 # In[6]:
 
