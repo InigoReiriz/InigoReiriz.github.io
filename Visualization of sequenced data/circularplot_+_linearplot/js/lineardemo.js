@@ -19,21 +19,25 @@ var contextLayout = { genomesize: 6264404,
    then initialize the brush telling it the plot it needs
    to update */
 var linearTrack = new genomeTrack(linearlayout, tracks);
-var brush = new linearBrush(contextLayout,linearTrack);
+
+
+//var brush = new linearBrush(contextLayout,linearTrack);
 
 /* Tell the linear plot about the brush so when the linear
    track is updated (via a drag event, etc) it will update
    the brush */
-linearTrack.addBrushCallback(brush);
+
+//linearTrack.addBrushCallback(brush);
 
 /* If we have a circular plot, tell the linear plot
    to let it know about updates, this is needed for
    the combo demo */
+
 window.onload = function() {
   if('undefined' !== typeof cTrack) {
     console.log("Hooking up circular plot callback");
     linearTrack.addBrushCallback(cTrack);
-    brush.addBrushCallback(cTrack);
+    //brush.addBrushCallback(cTrack);
   }
 }
 
