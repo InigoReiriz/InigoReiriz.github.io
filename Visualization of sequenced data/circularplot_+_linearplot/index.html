@@ -5,6 +5,7 @@
   <title>Circularplot of Sequenced data</title>
     <script src="js/libraries/d3.min.js"></script>
     <script src="js/libraries/d3-tip.js"></script>
+    <script  language="javascript" src="js/table-lines.js"></script>
     <style>
       body {
       overflow:  scroll;
@@ -18,12 +19,6 @@
       top: 600px;
       left: 40px;
     }
-    /*
-    #brush {
-      position: absolute;
-      top: 900px;
-      left: 260px;
-    }*/
 
     #circularchart {
       position: absolute;
@@ -32,14 +27,17 @@
     }
     </style>
     <link rel="stylesheet" type="text/css" href="css/track.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   </head>
   <body>
     <div id="body">
     <!-- The containers that will hold the SVG of the plots -->
       <div id="circularchart"></div>
       <div id="linearchart"></div>      
-      <div id="brush"></div>
+      <div id="table"></div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     
     <script type="text/javascript" src="data/contig.data.json"></script>
     <!--<script type="text/javascript" src="data/data.js"></script>-->
@@ -50,6 +48,7 @@
 
     <script type="text/javascript" src="js/lineardemo.js"></script>
     <script type="text/javascript" src="js/circularsample.js"></script> 
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
       <!-- Controls on the demo -->
     <div id="demo-controls">
@@ -59,6 +58,64 @@
       <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateCS(this); return false" checked> <span style='color: #006600'>Show CS</div>
 
       <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateUCS(this); return false" checked> <span style='color: #DC143C'>Show UCS</div>
+
+    </div>
+
+    <div id="table">
+
+      <table class="table table-striped table-sm table-bordered">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Lane name</th>
+          <th>Lane type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Lane 1</th>
+          <td>Reference</td>
+           <td>
+            <svg width="100%" height="30%" >
+                <rect width="150" height="3" style="fill:#FFCC00;"></rect>
+            </svg>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Lane 2</th>
+          <td> Core Sequence (CS) </td>
+          <td>
+            <svg width="100%" height="30%">
+                <rect width="150" height="3" style="fill:#006600;"></rect>
+            </svg>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Lane 3</th>
+          <td>Unique Core Sequence (UCS)</td>
+           <td>
+            <svg width="100%" height="30%">
+                <rect width="150" height="3" style="fill:#DC143C;"></rect>
+            </svg>
+            </td>
+        </tr>
+        <tr>
+          <th scope="row">Lane 4</th>
+          <td>Depth</td>
+          <td>
+            <svg  width="100%" height="30%">
+                <line x1="0" y1="50" x2="30" y2="40" style="stroke:rgb(17,17,17);stroke-width:2" />
+                <line x1="30" y1="40" x2="60" y2="20" style="stroke:rgb(17,17,17);stroke-width:2" />
+                <line x1="60" y1="20" x2="80" y2="0" style="stroke:rgb(17,17,17);stroke-width:2" />
+                <line x1="80" y1="0" x2="110" y2="0" style="stroke:rgb(17,17,17);stroke-width:2" />
+                <line x1="110" y1="0" x2="130" y2="20" style="stroke:rgb(17,17,17);stroke-width:2" />
+                <line x1="130" y1="20" x2="150" y2="40" style="stroke:rgb(17,17,17);stroke-width:2" />
+                <line x1="150" y1="40" x2="160" y2="50" style="stroke:rgb(17,17,17);stroke-width:2" />
+            </svg>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     </div>
  

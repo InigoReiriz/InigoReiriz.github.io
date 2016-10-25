@@ -350,3 +350,9 @@
   top: 100%;
   left: 0;
 }
+
+.table{
+    margin-left:790px;
+    margin-top:0px;
+    width: auto !important;
+}
