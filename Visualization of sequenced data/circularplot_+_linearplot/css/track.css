@@ -356,3 +356,12 @@
     margin-top:0px;
     width: auto !important;
 }
+
+.box {
+    position:relative;
+}
+.cpright {
+    position:absolute;
+    bottom:0;
+    right:0;
+}
