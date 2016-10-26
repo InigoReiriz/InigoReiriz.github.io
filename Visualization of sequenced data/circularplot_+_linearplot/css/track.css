@@ -210,18 +210,13 @@
 /* Track 3 is a non-stranded track, so no _pos
    and _neg modifiers on the classes */
 .ucs {
-    fill: #3399FF;
+    fill: #DC143C;
     fill-opacity: .7;
 }
 
 .ucs_neg {
     fill: #DC143C;
     fill-opacity: .7;
-}
-
-.ucs:hover {
-    fill: blue;
-    fill-opacity: .9;
 }
 
 .ucs_text {
