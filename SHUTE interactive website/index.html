@@ -141,7 +141,9 @@
             .attr("class", "mono")
             .text(function(d) { return "≥ " + Math.round(d); })
             .attr("x", function(d, i) { return legendElementWidth * i; })
-            .attr("y", height + gridSize);
+            .attr("y", height + gridSize)
+            .style("fill", 'black')
+            .style("font-weight", 'bold');
 
           legend.exit().remove();
 
