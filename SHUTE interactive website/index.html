@@ -56,6 +56,11 @@
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
   </head>
   <body>
+       <select id = "opts">
+        <option value="buttonHumidity" selected="selected">Humidity</option>
+        <option value="buttonTemperature">Temperature</option>
+        <option value="buttonpH">pH</option>
+      </select>
     <div id="chart"></div>
     <div id="dataset-picker">
     </div>
@@ -66,9 +71,7 @@
           gridSize = Math.floor(width / 24),
           legendElementWidth = gridSize*2,
           buckets = 9,
-          colors = ["#ffffd9", "#ffffb3", "#ffe0b3" ,"#ffd699","#ffc266", "#ff9980", " #ff704d", " #ff471a"], // alternatively colorbrewer.YlGnBu[9]
-
-      datasets = ["data/data2.tsv"]
+          colors = ["#ffffd9", "#ffffb3", "#ffe0b3" ,"#ffd699","#ffc266", "#ff9980", " #ff704d", " #ff471a"] // alternatively colorbrewer.YlGnBu[9]
 
     var tip = d3.tip()
       .attr('class', 'd3-tip')
@@ -141,7 +144,7 @@
             .attr("class", "mono")
             .text(function(d) { return "≥ " + Math.round(d); })
             .attr("x", function(d, i) { return legendElementWidth * i; })
-            .attr("y", height + gridSize)
+            .attr("y", height + gridSize + 4)
             .style("fill", 'black')
             .style("font-weight", 'bold');
 
@@ -150,10 +153,7 @@
         });  
       };
 
-      heatmapChart(datasets[0]);
-      
-      var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
-        .data(datasets);
+      heatmapChart("data/humidity.tsv");
 
     </script>
   </body>
