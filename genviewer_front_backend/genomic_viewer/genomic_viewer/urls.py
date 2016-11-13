@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from d3vis.views import visualisegenome
+from d3vis.views import model_form_upload
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -23,7 +23,7 @@ urlpatterns = [
 	# the reason why /admin works is because we are telling here to which site the request needs to go
     
     #look at d3vis app, file views and function home.
-    url(r'^$', visualisegenome, name = 'visualisegenome'),
+    url(r'^$', model_form_upload, name = 'model_form_upload'),
     url(r'^admin/', admin.site.urls),
 ]
 
