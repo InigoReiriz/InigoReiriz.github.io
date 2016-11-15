@@ -134,8 +134,6 @@ def parse_file(file_name):
 
     contigs.append(contig.copy())
 
-    # save formatted file
-    dir_out = dir + 'file_out.json'
-    with open(dir_out, 'w') as f:
-        json.dump(contigs, f, indent=3)
+    return contigs
 
+    

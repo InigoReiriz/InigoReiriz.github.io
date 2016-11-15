@@ -34,6 +34,10 @@
       margin-left: 800px;
       margin-top: 30px;
     }
+
+    #input.remove-label{
+      color: #fff;
+    }
     
     </style>
     <link href = "{% static 'css/track.css' %}" rel="stylesheet">
@@ -51,9 +55,12 @@
 
     <div id = "uploadfeature">
       {% block content %}
-
       {% endblock %}
     </div>
+
+    <script type="text/javascript">
+        var tracks = {{ json_data|safe }}
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     
