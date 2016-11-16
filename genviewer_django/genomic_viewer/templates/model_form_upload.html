@@ -4,9 +4,10 @@
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <input type="file" class="remove-label">
-    <br>
-    <br>
+  	{% for field in form %}
+  		{{ field }}
+	{% endfor %}
+
     <input type="submit" value="Submit"/>
   </form>
 
