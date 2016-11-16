@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <input type="file" class="remove-label">
+    <br>
+    <br>
+    <input type="submit" value="Submit"/>
+  </form>
+
+{% endblock %}
