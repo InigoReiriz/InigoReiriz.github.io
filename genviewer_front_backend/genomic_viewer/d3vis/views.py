@@ -11,6 +11,7 @@ import json
 def model_form_upload(request):
 
     json_data = {}
+    flag = 0 #flag initially deactivated
 
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -21,7 +22,8 @@ def model_form_upload(request):
 
             parsed_data = parse_file(file_name)
             json_data= json.dumps(parsed_data) #encode it to json format
+            flag = 1 #activate flag
     else:
         form = DocumentForm()
 
-    return render(request, 'model_form_upload.html', context = {'form': form, 'json_data': json_data})
+    return render(request, 'model_form_upload.html', context = {'form': form, 'json_data': json_data, 'flag': flag})
