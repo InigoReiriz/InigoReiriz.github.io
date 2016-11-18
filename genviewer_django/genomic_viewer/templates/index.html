@@ -74,13 +74,18 @@
       {% endblock %}
     </div>
 
-    <script src="{% static 'js/mrc_1.js' %}"></script>
+    <<script src="{% static 'js/mrc_1.js' %}"></script>
 
     <script type="text/javascript">
         var flag = {{ flag|safe }}
+
         if (flag == 1){
             var tracks = {{ json_data|safe }}
         }
+        else{
+            var tracks = track_ini
+        }
+
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -92,17 +97,6 @@
     <script src="{% static 'js/lineardemo.js' %}"></script>
     <script src="{% static 'js/circularsample.js' %}"></script> 
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
-      <!-- Controls on the demo -->
-    <div id="demo-controls">
-
-      <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateReference(this); return false" checked> <span style='color: #FFCC00'> Show Ref</div>
-
-      <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateCS(this); return false" checked> <span style='color: #006600'>Show CS</div>
-
-      <div class="control-item"><input type="checkbox" name="showStrand" onchange="updateUCS(this); return false" checked> <span style='color: #DC143C'>Show UCS</div>
-
-    </div>
 
     <div id="table">
 

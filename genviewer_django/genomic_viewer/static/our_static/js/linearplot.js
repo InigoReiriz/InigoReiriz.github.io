@@ -114,6 +114,7 @@ function genomeTrack(layout,tracks) {
 	    .attr("id", "dragbar_" + this.layout.containerid)
 	    .call(dragright);
 
+
 	this.dragbar.append("rect")
 	    .attr("width", 25)
 	    .attr("height", 20)
@@ -125,6 +126,8 @@ function genomeTrack(layout,tracks) {
 	    .attr("y1", 0)
 	    .attr("y2", 20)
 	    .attr("class", "dragbar-line");
+
+
 	this.dragbar.append("line")
 	    .attr("x1", 9)
 	    .attr("x2", 9)
@@ -139,7 +142,6 @@ function genomeTrack(layout,tracks) {
 	    .attr("class", "dragbar-line");
     }
 	
-
     this.genomesize = layout.genomesize;
 
     this.tip = d3.tip()
@@ -356,7 +358,7 @@ genomeTrack.prototype.displayStranded = function(track, i) {
     }
 
     var stackNum = this.tracks[i].stackNum;
-    //    console.log(visStart, visEnd);
+
     var visItems = track.items.filter(function(d) {
 	    if(typeof d.feature !== 'undefined' && d.feature !== 'gene') {
 		if(track.featureThreshold < visRange) {
@@ -368,10 +370,15 @@ genomeTrack.prototype.displayStranded = function(track, i) {
 
     //    console.log(track.items);
 
-    var rects = this.itemRects[i].selectAll("g")
-    .data(visItems, function(d) { return d.id; })
-	.attr("transform", function(d,i) { 
-	    return "translate(" + x1(d.start) + ',' +  d.yshift + ")"; });
+    //########################################################################################### ANIMATION UPDATE THERE
+
+	    var rects = this.itemRects[i].selectAll("g")
+    	.data(visItems, function(d) { return d.id; })
+		.attr("transform", function(d,i) { 
+	    	return "translate(" + x1(d.start) + ',' +  d.yshift + ")"; 
+		});
+
+	// ##########################################################################################
 
     // Process the changed/moved rects
     rects.selectAll("rect")
@@ -1060,7 +1067,6 @@ genomeTrack.prototype.redraw = function() {
 	    &&  this.tracks[i].skipLinear == true) {
 	     continue;
 	 }
-
 	switch(this.tracks[i].trackType) {
 	case 'gap':
 	    this.displayGapTrack(this.tracks[i], i);
@@ -1072,9 +1078,6 @@ genomeTrack.prototype.redraw = function() {
 	    break;
 	case "track":
 	    this.displayTrack(this.tracks[i], i);
-	    break;
-	case "glyph":
-	    this.displayGlyphTrack(this.tracks[i], i);
 	    break;
 	case "plot":
 	    this.displayPlotTrack(this.tracks[i], i);

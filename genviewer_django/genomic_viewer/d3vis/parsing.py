@@ -46,6 +46,8 @@ def parse_lane(data, parsed_reference, lanetype, strand):
                 track['start'] = contig_start_point + data['data'][num_contig]['lanes'][lanetype][num_track]['position'] 
                 track['end'] = track['start'] + data['data'][num_contig]['lanes'][lanetype][num_track]['length']
 
+                base_len = track['end'] - track['start']
+
                 parsed_lane.append(track.copy())
 
         except KeyError:
