@@ -1,0 +1,11 @@
+div#map1{
+	margin-left: 350px;
+	width: 1200px;
+	height: 800px;
+	margin-top: 50px;
+}
+
+/* d3 SVG positioning */
+div#map1 svg {
+	position: relative;
+}
