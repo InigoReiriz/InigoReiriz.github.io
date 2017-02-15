@@ -1,11 +1,16 @@
 div#map1{
-	margin-left: 350px;
-	width: 1200px;
-	height: 800px;
-	margin-top: 50px;
+	margin-left: 275px;
+	width: 3500px;
+	height: 875px;
+	margin-top: 10px;
 }
 
 /* d3 SVG positioning */
 div#map1 svg {
 	position: relative;
+}
+
+div#dropdown{
+	margin-top: 25px;
+	margin-left: 100px;
 }

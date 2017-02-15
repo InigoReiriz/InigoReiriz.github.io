@@ -29,8 +29,8 @@ var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/
 });
 
 var map1 = L.map('map1', {
-	center: [40.730610, -73.935242],
-	zoom: 12,
+	center: [40.711510, -73.935242],
+	zoom: 11,
 	layers: [street]
 });
 
@@ -79,6 +79,8 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 
 	if (error) throw error;
 
+	var ID = "1";
+
 	var transform = d3.geo.transform({
 			point: projectPoint
 	}),
@@ -91,6 +93,31 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 	// Handle zoom of the map and repositioning of d3 overlay
 	map1.on("viewreset", reset);
 	reset();
+
+	d3.selectAll("#opts_v1")
+			.on("change",function(){
+				ID = d3.select(this).property('value');
+				resetRegion();
+				emphasizeRegion(ID);
+			})
+
+	function emphasizeRegion(ID){
+
+		d3.select(feature[0][parseInt(ID)-1])
+			.attr("d", path)
+			.style("stroke", 'black')
+       		.style("fill", "none")
+       		.style("stroke-width", 4)
+	}
+
+	function resetRegion(){
+
+		// Add colors and other fillings for every feature
+		feature.attr("d", path)
+		.style("stroke", 'black')
+       	.style("fill", "none")
+       	.style("stroke-width", 1)
+	}
 
 	// Reposition the SVG to cover the features.
 	function reset() {
@@ -106,9 +133,15 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 
 		// Add colors and other fillings for every feature
 		feature.attr("d", path)
-		.style("stroke", 'black')
-       	.style("fill", "none")
-       	.style("stroke-width", 3)
+			.style("stroke", 'black')
+       		.style("fill", "none")
+       		.style("stroke-width", 1)
+
+       	d3.select(feature[0][parseInt(ID)-1])
+			.attr("d", path)
+			.style("stroke", 'black')
+       		.style("fill", "none")
+       		.style("stroke-width", 4.5)
 	}
 
 	// Use Leaflet to implement a D3 geometric transformation.
