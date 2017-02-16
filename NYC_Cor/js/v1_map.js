@@ -99,8 +99,6 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 		.enter().append("path");
 
 	var ID = "1";
-	//emphasizeRegion(ID);
-	//drawHeatMap();
 
 	// Handle zoom of the map and repositioning of d3 overlay
 	map1.on("viewreset", reset);
@@ -111,7 +109,7 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 				ID = d3.select(this).property('value');
 				resetRegion();
 				emphasizeRegion(ID);
-				drawHeatMap(ID);
+				drawHeatMap("data/Correlations/Corr_zone_" + ID + ".csv");
 			})
 
 	function emphasizeRegion(ID){
@@ -156,12 +154,12 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
        		.style("fill", "#DB7093")
        		.style("stroke-width", 4)
 
-       	drawHeatMap(ID)
+       	drawHeatMap("data/Correlations/Corr_zone_" + ID + ".csv")
 	}
 
-	function drawHeatMap(ID){
+	function drawHeatMap(path_data){
 
-		d3.csv("data/temp.csv", function(data){
+		d3.csv(path_data, function(data){
 
 			var corrById = {};
 			var nameById = {};
