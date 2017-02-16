@@ -31,7 +31,7 @@ var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/
 var map1 = L.map('map1', {
 	center: [40.711510, -73.935242],
 	zoom: 11,
-	layers: [street]
+	layers: [grayscale]
 });
 
 // control map layers
@@ -71,7 +71,7 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 
 // Define the div for the tooltip
 var div = d3.select("body").append("div")	
-    .attr("class", "tooltip")				
+    .attr("class", "tooltip")
     .style("opacity", 0);
 
  // Setting color domains(intervals of values) for our map
@@ -99,8 +99,8 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 		.enter().append("path");
 
 	var ID = "1";
-	emphasizeRegion(ID);
-	drawHeatMap();
+	//emphasizeRegion(ID);
+	//drawHeatMap();
 
 	// Handle zoom of the map and repositioning of d3 overlay
 	map1.on("viewreset", reset);
@@ -156,7 +156,7 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
        		.style("fill", "#DB7093")
        		.style("stroke-width", 4)
 
-       	drawHeatMap()
+       	drawHeatMap(ID)
 	}
 
 	function drawHeatMap(ID){
