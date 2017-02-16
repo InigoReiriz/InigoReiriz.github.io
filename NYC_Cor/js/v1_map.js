@@ -69,17 +69,25 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 	g = svgMap.append("g").attr("class", "leaflet-zoom-hide regions"),
 	g_circles = svgMap.append("g").attr("class", "leaflet-zoom-hide");
 
-var tool = d3.select("body").append("div")
-				.attr("class", "tooltipMap")
-				.style("opacity", "0")
-				.style("display", "none");
+// Define the div for the tooltip
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+
+ // Setting color domains(intervals of values) for our map
+
+var color_domain = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.01]
+var legend_labels = ["0.1+", "0.2+", "0.3+", "0.4+", "0.5+", "0.6+", "0.7+", "0.8+", "0.9+"]              
+
+var color = d3.scale.threshold()
+  .domain(color_domain)
+  .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)",
+  		"rgb(107,174,214)", "rgb(66,146,198)", "rgb(33,113,181)", "rgb(8,81,156)", "rgb(8,48,107)", "rgb(8,48,107)"]);
 
 
 d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 
 	if (error) throw error;
-
-	var ID = "1";
 
 	var transform = d3.geo.transform({
 			point: projectPoint
@@ -90,6 +98,10 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 		.data(collection.features)
 		.enter().append("path");
 
+	var ID = "1";
+	emphasizeRegion(ID);
+	drawHeatMap();
+
 	// Handle zoom of the map and repositioning of d3 overlay
 	map1.on("viewreset", reset);
 	reset();
@@ -99,6 +111,7 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 				ID = d3.select(this).property('value');
 				resetRegion();
 				emphasizeRegion(ID);
+				drawHeatMap(ID);
 			})
 
 	function emphasizeRegion(ID){
@@ -106,7 +119,7 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 		d3.select(feature[0][parseInt(ID)-1])
 			.attr("d", path)
 			.style("stroke", 'black')
-       		.style("fill", "none")
+       		.style("fill", "#DB7093")
        		.style("stroke-width", 4)
 	}
 
@@ -116,7 +129,7 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 		feature.attr("d", path)
 		.style("stroke", 'black')
        	.style("fill", "none")
-       	.style("stroke-width", 1)
+       	.style("stroke-width", 4)
 	}
 
 	// Reposition the SVG to cover the features.
@@ -135,13 +148,60 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 		feature.attr("d", path)
 			.style("stroke", 'black')
        		.style("fill", "none")
-       		.style("stroke-width", 1)
+       		.style("stroke-width", 4)
 
        	d3.select(feature[0][parseInt(ID)-1])
 			.attr("d", path)
 			.style("stroke", 'black')
-       		.style("fill", "none")
-       		.style("stroke-width", 4.5)
+       		.style("fill", "#DB7093")
+       		.style("stroke-width", 4)
+
+       	drawHeatMap()
+	}
+
+	function drawHeatMap(ID){
+
+		d3.csv("data/temp.csv", function(data){
+
+			var corrById = {};
+			var nameById = {};
+
+	   		data.forEach(function(d) {
+	    		corrById[d.ID] = d.Corr;
+	    		nameById[d.ID] = d.ID;
+	  		});
+	   		
+	   		feature.attr("d", path)
+	   			.style("fill", function(d, i){
+	   				if (i != parseInt(ID)-1){
+	   					return color(corrById[i+1]);
+	   				}
+	   				else{
+	   					return "#DB7093"
+	   				}
+	  			})
+				.style("opacity", .9)
+				.on("mouseover", function(d, i) {	
+					d3.select(this)
+						.transition()
+						.duration(500)
+						.style("opacity", .55)	
+            		div.transition()		
+                		.duration(200)		
+                		.style("opacity", .9);		
+            		div	.html("<strong>Correlation:</strong> <span style='color:#8B0000'>" + parseFloat(corrById[i+1]).toFixed(4) + "</span>")	
+                		.style("left", (d3.event.pageX + 16) + "px")		
+                		.style("top", (d3.event.pageY + 16) + "px")})
+                .on("mouseout", function(d) {	
+                	d3.select(this)
+						.transition()
+						.duration(500)
+						.style("opacity", .9)	
+            		div.transition()		
+                		.duration(500)		
+                		.style("opacity", 0);				   
+				})
+		});
 	}
 
 	// Use Leaflet to implement a D3 geometric transformation.
