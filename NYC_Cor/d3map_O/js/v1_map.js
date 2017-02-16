@@ -77,7 +77,6 @@ var div = d3.select("body").append("div")
  // Setting color domains(intervals of values) for our map
 
 var color_domain = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.01]
-var legend_labels = ["0.1+", "0.2+", "0.3+", "0.4+", "0.5+", "0.6+", "0.7+", "0.8+", "0.9+"]              
 
 var color = d3.scale.threshold()
   .domain(color_domain)
@@ -148,13 +147,13 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
        		.style("fill", "none")
        		.style("stroke-width", 4)
 
-       	d3.select(feature[0][parseInt(ID)-1])
+    d3.select(feature[0][parseInt(ID)-1])
 			.attr("d", path)
 			.style("stroke", 'black')
        		.style("fill", "#DB7093")
        		.style("stroke-width", 4)
 
-       	drawHeatMap("data/Correlations/Corr_zone_" + ID + ".csv")
+    drawHeatMap("data/Correlations/Corr_zone_" + ID + ".csv")
 	}
 
 	function drawHeatMap(path_data){
