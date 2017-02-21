@@ -10,9 +10,8 @@ div#map1 svg {
 	position: relative;
 }
 
-div#dropdown{
-	margin-top: 25px;
-	margin-left: 100px;
+#form_comparison label {
+    display: block;
 }
 
 div.tooltip {	
