@@ -76,6 +76,7 @@ var div = d3.select("body").append("div")
 
  // Setting color domains(intervals of values) for our map
 
+var flag = 0
 var color_domain = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.01]
 
 var color = d3.scale.threshold()
@@ -95,8 +96,22 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 		.data(collection.features)
 		.enter().append("path");
 
-	//Draw heatmap with default options for checkboxes
-	drawHeatMap();
+	g.selectAll('text')
+		.data(collection.features)
+		.enter()
+		.append("text")
+		.text(function(d,i){
+			return (i+1)
+		})
+		.attr("x", function(d){
+        return path.centroid(d)[0];
+    })
+    .attr("y", function(d){
+        return  path.centroid(d)[1];
+    })
+    .attr("text-anchor","middle")
+    .attr('font-size','9pt')
+    .attr('font-weight', 'bold');
 
 	// Handle zoom of the map and repositioning of d3 overlay
 	map1.on("viewreset", reset);
@@ -143,13 +158,13 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 			.attr("d", path)
 			.style("fill", "#8FBC8F")
 			.style("stroke", "black")
-			.style("stroke-width", 4)
+			.style("stroke-width", 2)
 
 		d3.select(feature[0][parseInt(desID)-1])
 			.attr("d", path)
 			.style("fill", "#87CEFA")
 			.style("stroke", "black")
-			.style("stroke-width", 4)
+			.style("stroke-width", 2)
 	}
 
 	function resetRegion(){
@@ -157,8 +172,8 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 		//go back to original features 
 		feature.attr("d", path)
 			.style("stroke", 'black')
-       		.style("fill", "none")
-       		.style("stroke-width", 4)
+      .style("fill", "none")
+      .style("stroke-width", 2)
 	}
 
 	function drawHeatMap(){
@@ -191,7 +206,10 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
             			div.transition()		
                 			.duration(200)		
                 			.style("opacity", .9);		
-            			div	.html("<strong>Correlation:</strong> <span style='color:#8B0000'>" + parseFloat(corrById[i+1]).toFixed(4) + "</span>")	
+            			div	.html(
+            				"<strong> Zone:</strong><span style='color:#8B0000'>" + (i+1)  + "</span>\n" + 
+            				"<strong>Correlation:</strong> <span style='color:#8B0000'>" 
+            				+ parseFloat(corrById[i+1]).toFixed(4) + "</span>")	
                 			.style("left", (d3.event.pageX + 16) + "px")		
                 			.style("top", (d3.event.pageY + 16) + "px")})
           .on("mouseout", function(d) {	
@@ -223,7 +241,14 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 		feature.attr("d", path)
 			.style("stroke", 'black')
        		.style("fill", "none")
-       		.style("stroke-width", 4)
+       		.style("stroke-width", 2)
+
+    if (flag!=0){
+    	g.selectAll("text")
+				.text("");
+    }
+
+    flag = flag + 1;
 
     //keep having the emphasized region while zooming
     var orID = getCheckedOrigin();
@@ -233,13 +258,13 @@ d3.json("data/taxi_zones/taxi_zones.geojson", function(error, collection) {
 			.attr("d", path)
 			.style("fill", "gray")
 			.style("stroke", "black")
-			.style("stroke-width", 4)
+			.style("stroke-width", 2)
 
 		d3.select(feature[0][parseInt(desID)-1])
 			.attr("d", path)
 			.style("fill", "gray")
     	.style("stroke", "black")
-    	.style("stroke-width", 4)
+    	.style("stroke-width", 2)
 
     drawHeatMap();
 	}
