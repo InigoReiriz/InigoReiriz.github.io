@@ -1,0 +1,16 @@
+div#map1{
+	margin-left: 225px;
+	width: 1300px;
+	height: 875px;
+	margin-top: 10px;
+}
+
+/* d3 SVG positioning */
+div#map1 svg {
+	position: relative;
+}
+
+#form_comparison label {
+    display: block;
+}
+
