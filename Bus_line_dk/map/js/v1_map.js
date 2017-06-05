@@ -30,7 +30,7 @@ var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/
 
 var map1 = L.map('map1', {
 	center: [55.676098, 12.568337],
-	zoom: 12,
+	zoom: 13,
 	layers: [grayscale]
 });
 
@@ -85,12 +85,22 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 	}),
 	path = d3.geo.path().projection(transform);
 
+	var LinkRefs = ["200:10427->200:1183", "200:1183->200:2673", "200:1188->200:1190",
+					"200:1190->200:1192", "200:2673->200:2675", "200:2675->200:1188"]
+
+	var array = []
+	for (var i = 0; i < collection.features.length; i++) { 
+		if (LinkRefs.includes(collection.features[i].properties.LinkRef) == true){
+			array.push(collection.features[i])
+		}
+	}
+
 	var feature = g.selectAll("path")
-		.data(collection.features)
+		.data(array)
 		.enter().append("path");
 
 	feature.attr("d", path)
-		.style("stroke", 'black')
+		.style("stroke", 'blue')
       	.style("fill", "none")
       	.style("stroke-width", 2)
 
@@ -113,7 +123,7 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 
 
 		feature.attr("d", path)
-			.style("stroke", 'blue')
+			.style("stroke", 'red')
        		.style("fill", "none")
        		.style("stroke-width", 2)
 
@@ -124,6 +134,7 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 		this.stream.point(point.x, point.y);
 	}
 
+	
 	d3.json("data/stop_points.geojson", function(error, data) {
 
 		if (error) throw error;
@@ -136,7 +147,6 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 		var feature = g.selectAll("path")
 			.data(data.features)
 			.enter().append("path");
-
 
 		feature.attr("d", path)
 			.style("stroke", 'black')
@@ -163,7 +173,7 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 
 
 			feature.attr("d", path)
-				.style("stroke", 'black')
+				.style("stroke", 'blue')
 	       		.style("fill", "none")
 	       		.style("stroke-width", 2)
 
