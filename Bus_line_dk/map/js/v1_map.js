@@ -85,8 +85,7 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 	}),
 	path = d3.geo.path().projection(transform);
 
-	var LinkRefs = ["200:10427->200:1183", "200:1183->200:2673", "200:1188->200:1190",
-					"200:1190->200:1192", "200:2673->200:2675", "200:2675->200:1188"]
+	var LinkRefs = ["200:10427->200:1183", "200:1183->200:2673", "200:2673->200:2675"]
 
 	var array = []
 	for (var i = 0; i < collection.features.length; i++) { 
