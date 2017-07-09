@@ -70,7 +70,7 @@ var svgMap = d3.select(map1.getPanes().overlayPane).append("svg"),
 	g_circles = svgMap.append("g").attr("class", "leaflet-zoom-hide");
 
 // Define the div for the tooltip
-var div = d3.select("body").append("div")	
+var div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
@@ -85,10 +85,11 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 	}),
 	path = d3.geo.path().projection(transform);
 
-	var LinkRefs = ["200:10427->200:1183", "200:1183->200:2673", "200:2673->200:2675"]
+	var LinkRefs = ['200:2673->200:2675', '200:1183->200:2673', '200:1188->200:1190',
+	'200:1190->200:1192', '200:2675->200:1188', '200:1192->200:1193', '200:10427->200:1183']
 
 	var array = []
-	for (var i = 0; i < collection.features.length; i++) { 
+	for (var i = 0; i < collection.features.length; i++) {
 		if (LinkRefs.includes(collection.features[i].properties.LinkRef) == true){
 			array.push(collection.features[i])
 		}
@@ -108,8 +109,8 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 	reset();
 
 	function reset(){
-		
-		var bounds = 
+
+		var bounds =
 				path.bounds(collection),
 					topLeft = bounds[0],
 					bottomRight = bounds[1];
@@ -133,7 +134,7 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 		this.stream.point(point.x, point.y);
 	}
 
-	
+
 	d3.json("data/stop_points.geojson", function(error, data) {
 
 		if (error) throw error;
@@ -151,15 +152,15 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 			.style("stroke", 'black')
 	      	.style("fill", "none")
 	      	.style("stroke-width", 2)
-	
+
 
 		// Handle zoom of the map and repositioning of d3 overlay
 		map1.on("viewreset", reset);
 		reset();
 
 		function reset(){
-			
-			var bounds = 
+
+			var bounds =
 					path.bounds(data),
 						topLeft = bounds[0],
 						bottomRight = bounds[1];
@@ -184,5 +185,5 @@ d3.json("data/routelinks-4A.geojson", function(error, collection) {
 		}
 
 	});
-	
+
 });
