@@ -1,1 +1,0 @@
-http://inigoreiriz.github.io/Bus_line_dk/map/index.html
