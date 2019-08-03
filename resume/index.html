@@ -1,102 +1,164 @@
-<!DOCTYPE HTML>
-<!--
-	Landed by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<!DOCTYPE html>
 <html>
-	<head>
-		<link rel="icon"
-		type="image/png"
-		href="./me.jpg">
-		<title>INIGO REIRIZ</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-	</head>
-	<body class="landing">
-		<div id="page-wrapper">
+  <head>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-			<!-- Header -->
-				<header id="header">
-					<h1 id="logo"><a href="index.html">Inigo Reiriz</a></h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html" class="button special">Home</a></li>
-						</ul>
-					</nav>
-				</header>
+      ga('create', 'UA-98795337-1', 'auto');
+      ga('send', 'pageview');
 
-			<!-- Banner -->
-				<section id="banner">
-					<div class="content">
-						<header>
-							<h2>Engineer. Software Developer.</h2>
-							<p>MSc in Computer Science with a focus in Machine Learning & Deep Learning.<br />
-							</p><br/>
-							<a href="#five" class="button special scrolly">Contact</a>
-						</header>
-						<span class="image"><img src="./me.jpg" alt="Chetan Bhasin" /></span>
-					</div>
-					<a href="#one" class="goto-next scrolly">Next</a>
-				</section>
+    </script>
+    <meta charset="utf-8">
+    <title>Inigo Reiriz | Interactive Resume</title>
 
-			<!-- One -->
-				<section id="one" class="spotlight style1 bottom">
-					<span class="image fit main"><img src="./me_wide.jpg" alt="" /></span>
-					<div class="content">
-						<div class="container">
-							<div class="row">
-								<div class="4u 12u$(medium)">
-									<header>
-										<h2>Who I am and what I do</h2>
-										<p>A Software Developer by profession, and a student by heart.<br/>
-									</header>
-								</div>
-								<div class="4u 12u$(medium)">
-									<p>Hi! My name is Inigo Reiriz and I am a Software Developer from San Sebastian, Spain. I consider myself a lifelong-learner who likes being surrounded by those who know more and are willing to teach.</p>
-								</div>
-								<div class="4u$ 12u$(medium)">
-									<p>I build predictive models mostly in Python, and I am a huge fan of all the new stuff going on in AI. I am currently hoping to learn some of the core principles of functional programming to build cool data pipelines that support ML and DL models in production. <br/>If you would like to contact me for any of those things, you can do it by using the information at the bottom of this page.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<a href="#two" class="goto-next scrolly">Next</a>
-				</section>
-			<!-- Five -->
-				<section id="five" class="wrapper style2 special fade">
-					<div class="container">
-						<header>
-							<h2>Contact me or have a look at my work</h2>
-							<p>Here are a little pointers if you would like to get to know me better.</p>
-						</header>
-					</div>
-				</section>
+    <link rel="stylesheet" type="text/css" href="./assets/stylesheets/main.css">
 
-			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="https://www.linkedin.com/in/inigoreiriz/" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						<li><a href="https://github.com/InigoReiriz" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="mailto:inigoreiriz@gmail.com" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-				</footer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Amaranth:700|Londrina+Solid|Patrick+Hand+SC" rel="stylesheet">
 
-		</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="./js/bundle.js"></script>
+  </head>
+  <body>
+    <div class='content-wrapper'>
+      <div class='content'>
+        <div class='title-container'>
+          <div class='down-arrow-cont'>
+            <div class='down-arrow flash'></div>
+          </div>
+        </div>
+        <div class='floor-container'>
+          <div class='floor'></div>
+        </div>
+        
+        <div class='basement-container'>
+          <div class='floor'></div>
+        </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+        <div class='door-container'>
+          <div class='door'></div>
+        </div>
 
-	</body>
+        <div class='door-container-second'>
+          <div class='door'></div>
+        </div>
+
+        <div class='exp-container'>
+          <div class='exp-banner'></div>
+        </div>
+
+        <div class='g-banner-container'>
+          <div class='banner gryffindor-banner'>
+            <div class='work-exp one-1'>
+              <h1>Biodonostia</h1>
+              <h2>Computational Biology Department</h2>
+              <h3>Research Intern</h1>
+              <h4>Sep 2014 - May 2015</h2>
+            </div>
+          </div>
+        </div>
+        <div class='h-banner-container'>
+          <div class='banner hufflepuff-banner'>
+            <div class='work-exp one-2'>
+              <h1>Technical University of Denmark (DTU)</h1>
+              <h2>Bionformatics Department </h2>
+              <h3>Front-end & Back-end developer</h1>
+              <h4>Jan 2017 - Dec 2017</h2>
+            </div>
+          </div>
+        </div>
+        <div class='l-banner-container'>
+            <div class='banner hufflepuff-banner'>
+              <div class='work-exp one-2'>
+                <h1>Technical University of Denmark (DTU)</h1>
+                <h2>Computer Science Department</h2>
+                <h3>Machine Learning Researcher</h1>
+                <h4>Jan 2018 - May 2018</h2>
+              </div>
+            </div>
+          </div>
+        <div class='r-banner-container'>
+          <div class='banner ravenclaw-banner'>
+            <div class='work-exp two-1'>
+              <h1>Gindumac</h1>
+              <h2>Software Engineer</h2>
+              <h3>June 2018 - Nov 2018</h4>
+              <ul>Remote worker.</ul>
+              <ul>Part of a small team in a startup, worked on building an Industrial Internet of Things (IIoT) solution for performance monitoring of used industrial machinery in real-time.</ul>
+            </div>
+          </div>
+        </div>
+        <div class='s-banner-container'>
+          <div class='banner slytherin-banner'>
+            <div class='work-exp two-2'>
+              <h1>Tecnalia</h1>
+              <h2>Software Engineer</h2>
+              <h3>Dec 2018 - Present</h4>
+              <ul>Industry 4.0.</ul>
+              <ul>Currently building Industrial Internet of Things (IIoT) software for small and medium size companies.</ul>
+            </div>
+          </div>
+        </div>
+
+        <div class='project-frame-1-cont'>
+          <div class='project-frame-1'>
+            <div class='project-content'>
+              <h4>TECNUN (2010-2014)</h4>
+              <h2>Bachelor degree in Biomedical Engineering</h2>
+              <h3>Focus in Bioinformatics / Computational Biology</h3>
+              <br></br>
+            </div>
+            <div class='portrait-1-cont'>
+              <div class='portrait-1'></div>
+            </div>
+          </div>
+        </div>
+
+        <div class='project-frame-4-cont'>
+          <div class='project-frame-4'>
+            <div class="project-content">
+                <h4>Technical University of Denmark (2015-2017)</h4>
+                <h2>Master degree in Computer Science</h2>
+                <br></br>
+                <h3>Focus in Machine Learning / Deep Learning & Software Engineering</h3>
+            </div>
+            <div class='portrait-1-cont'>
+              <div class='portrait-2'></div>
+            </div>
+          </div>
+        </div>
+
+        <div class='outer-skills-container skills-set-1'>
+
+          <div class='skills-set-container'>
+
+            <div class='master-line line'></div>
+            <div class='expert-line line'></div>
+            <div class='proficient-line line'></div>
+            <div class='familiar-line line'></div>
+
+            <div class='master-text text'> TECNUN (1st YEAR, 1st SEMESTER) - STUDENT COLLABORATOR IN FUNDAMENTALS OF PROGRAMMING  </div>
+            <div class='expert-text text'> TECNUN (3rd YEAR, SUMMER) - STUDENT INTERN IN CIMA  </div>
+            <div class='proficient-text text'> DTU (6 MONTHS) - STUDENT JOB AS A MACHINE LEARNING RESEARCHER IN THE SMART MOBILITY LAB, COMPUTER SCIENCE DEPARTMENT  </div>
+            <div class='familiar-text text'> DTU (6 MONTHS) - STUDENT JOB AS A WEB PROGRAMMER IN BIOINFORMATICS DEPARTMENT  </div>
+
+          </div>
+        </div>
+
+        <div class='spell-container'>
+          <div class='spell'></div>
+        </div>
+
+        <div class='harry-container'>
+          <div class='harry face-right'></div>
+        </div>
+        <div class='background'></div>
+      </div>
+
+    </div>
+
+  </body>
 </html>
